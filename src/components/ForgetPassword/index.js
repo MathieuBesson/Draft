@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase'
 
 
-const ForgetPassword = (props) => {
+const ForgetPassword = () => {
 
     const firebase = useContext(FirebaseContext);
+    let history = useHistory();
 
     const data = {
         email: {
@@ -55,7 +56,7 @@ const ForgetPassword = (props) => {
                 setError('');
                 setSuccess(`Consulter votre e-mail ${forgetData.email.content} pour changer de mot de passe`);
                 setTimeout(() => {
-                    props.history.push('/authentification')
+                    history.push('/authentification')
                 }, 5000)
             })
             .catch(error => {

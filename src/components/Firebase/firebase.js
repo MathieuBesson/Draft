@@ -38,6 +38,16 @@ class Firebase {
         delete : (param) => this.db.collection("snow").doc(param).delete()
     }
 
+
+    commands = {
+        set : (params) => this.db.collection("commands").doc().set(params),
+        get : () => this.db.collection("commands").orderBy("date").get(),
+        delete : (param) => this.db.collection("commands").doc(param).delete()
+
+    }
+
+    
+
 }
 
 export default Firebase;

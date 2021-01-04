@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useCallback } from 'react';
 import { FirebaseContext } from '../../Firebase'
 
 const AdminCommandes = (props) => {
@@ -16,14 +16,14 @@ const AdminCommandes = (props) => {
         setFileUrl(await fileRef.getDownloadURL());
     };
 
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         const productsCollection = await firebase.products.get();
         setProducts(
             productsCollection.docs.map((doc) => {
                 return {...doc.data(), id : doc.id}
             })
         );
-    };
+    }, [firebase.products]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -74,7 +74,7 @@ const AdminCommandes = (props) => {
 
     useEffect(() => {
         fetchProducts();
-    }, []);
+    }, [fetchProducts]);
 
     return (
         <div>

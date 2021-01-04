@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useCallback } from 'react';
 import { Link } from "react-router-dom";
 import { FirebaseContext } from '../Firebase'
 
@@ -8,14 +8,14 @@ const ProductsPage = (props) => {
 
     const [products, setProducts] = useState([]);
 
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         const productsCollection = await firebase.products.get();
         setProducts(
             productsCollection.docs.map((doc) => {
                 return { ...doc.data(), id: doc.id }
             })
         );
-    };
+    }, [firebase.products]);
 
     function slugify (str) {
         str = str.replace(/^\s+|\s+$/g, '');
@@ -36,7 +36,7 @@ const ProductsPage = (props) => {
 
     useEffect(() => {
         fetchProducts();
-    }, []);
+    }, [fetchProducts]);
 
     return (
         <ul>

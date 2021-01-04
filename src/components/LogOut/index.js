@@ -1,4 +1,4 @@
-import React, {useContext, useHistory } from 'react';
+import React, {useContext } from 'react';
 import { FirebaseContext } from '../Firebase'
 
 const LogOut = (props) => {
@@ -9,7 +9,6 @@ const LogOut = (props) => {
         firebase.signoutUser()
     }
         
- 
     return (
         <button className="btn btn-primary" onClick={handleClick}>Deconnexion</button>
     );

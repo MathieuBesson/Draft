@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase'
 import './Login.scss'
 
@@ -18,6 +18,7 @@ const Login = (props) => {
             textError: null
         },
     }
+    let history = useHistory()
 
     const firebase = useContext(FirebaseContext);
 
@@ -48,7 +49,7 @@ const Login = (props) => {
         firebase.loginUser(loginData.loginEmail.content, loginData.loginPassword.content)
         .then(user => {
             setLoginData(data);
-            props.history.push('/');
+            history.push('/');
         })
         .catch(error => {
             setError(error);

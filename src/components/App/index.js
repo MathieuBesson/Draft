@@ -41,9 +41,39 @@ function App() {
 		return () => {
 			listener()
 		}
-	}, [firebase.auth])
+	}, [firebase])
 
-	console.log(cart)
+	const handleUpdateCartQuantity = (id, newQuantity) => {
+		if(newQuantity <= 0){
+			handleDeleteProduct(id)
+			console.log(newQuantity)
+			return 
+		}
+		let key;
+		let obj = cart.find((element, index) => {key = index; return element.id === id})
+		obj.quantity = newQuantity
+		let newCart = [...cart];
+		newCart[key] = obj
+		setCart(newCart);
+	}
+
+	const handleDeleteProduct = (id) =>{
+		let key;
+		let obj = cart.find((element, index) => {key = index; return element.id === id})
+		let newCart =  cart
+		newCart.splice(key, 1);
+		setCart([...newCart])
+	}
+
+	const handleUpdateCart = (newProduct, id) => {
+		let odlCartProductsId = cart.map(product => product.id)
+		if(odlCartProductsId.includes(id)){
+			let oldProduct = cart.find(product => product.id = id)
+			handleUpdateCartQuantity(id, newProduct.quantity + oldProduct.quantity)
+		} else {
+			setCart([...cart, newProduct])
+		}
+	}
 
 	return (
 		<div>
@@ -56,10 +86,9 @@ function App() {
 							<Route exact path="/" component={Home} />
 							<Route path="/authentification" component={Authentification} />
 							<Route exact path="/produits" component={ProductsPage} />
-							
-							<Route path="/produits/:slug" render={() => <Product handleCart={(newCart) => setCart([...cart, newCart])} />}/>
+							<Route path="/produits/:slug" render={(props) => <Product {...props} UpdateCart={(newProduct, id) => handleUpdateCart(newProduct, id)} />}/>
 							<Route path="/collaborations" component={CollaborationsPage} />
-							<Route path="/panier" render={() => <CartPage handleCart={(newCart) => setCart([...cart, newCart])} cart={cart}/>} />
+							<Route path="/panier" render={(props) => <CartPage {...props} UpdateProductQuantity={(id, newQuantity) => handleUpdateCartQuantity(id, newQuantity)} cart={cart} deleteProduct={(id) => handleDeleteProduct(id)} deleteCart={() => setCart([])}/>} />
 							<Route path="/mon-compte" component={AccountPage} />
 							<Route path="/mot-de-passe-oublie" component={ForgetPassword} />
 							<Route path="/admin/produits" component={AdminProducts} />

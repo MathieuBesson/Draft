@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { FirebaseContext } from '../Firebase'
 import './SignUp.scss'
 import UserSessionContext from '../UserSession'
+import { useHistory } from 'react-router-dom';
 
 
 const SignUp = (props) => {
@@ -10,11 +11,12 @@ const SignUp = (props) => {
 
     const firebase = useContext(FirebaseContext);
     const userSession = useContext(UserSessionContext);
+    const history = useHistory()
 
 
     useEffect(()=> {
         if(userSession.userSession !== null){
-            props.history.push({
+            history.push({
                 pathname: '/mon-compte',
                 state: { errorMessage: 'Vous êtes déjà connecté' }
             })
@@ -22,7 +24,7 @@ const SignUp = (props) => {
         return () => {
 			
 		}
-    }, [userSession]);
+    }, [userSession, history]);
 
     let formValues = { 'signUpLastName': {}, 'signUpFirstName': {}, 'signUpEmail': {}, 'signUpPassword': {}, 'signUpPasswordConfirm': {} };
     for (const item in formValues) {
@@ -93,7 +95,7 @@ const SignUp = (props) => {
             })
             .then(() => {
                 setsignUpData({ ...formValues })
-                props.history.push('/');
+                history.push('/');
             })
             .catch(error => {
                 setError(error)

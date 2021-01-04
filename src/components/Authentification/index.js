@@ -27,8 +27,8 @@ const Authentification = (props) => {
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
             <span className={activeClass('login') + " mr-5"} onClick={() => toggleHandler('login')}>Connexion</span>
             <span className={activeClass('signUp')} onClick={() => toggleHandler('signUp')}>Inscription</span>
-            <Login history={props.history} display={toggleAuthentification === 'login'} tabChoice={(choice) => toggleHandler(choice)} />
-            <SignUp history={props.history} display={toggleAuthentification === 'signUp'} tabChoice={(choice) => toggleHandler(choice)} />
+            <Login display={toggleAuthentification === 'login'} tabChoice={(choice) => toggleHandler(choice)} />
+            <SignUp display={toggleAuthentification === 'signUp'} tabChoice={(choice) => toggleHandler(choice)} />
         </div>
     );
 }

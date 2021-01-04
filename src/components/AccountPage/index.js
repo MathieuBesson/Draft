@@ -1,23 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import LogOut from '../LogOut';
 import UserSessionContext from '../UserSession'
-import { FirebaseContext } from '../Firebase'
 
 
 const AccountPage = (props) => {
 
     const userSession = useContext(UserSessionContext);
-    const firebase = useContext(FirebaseContext);
 
     useEffect(() => {
-        if (userSession.userData === null) {
+        if (userSession.userSession === null) {
             props.history.push({
                 pathname: '/authentification',
                 state: { errorMessage: 'Veuillez vous connecter pour accèder à votre compte' }
             })
         }
-
-    }, [userSession.userData, props.history]);
+    }, [userSession.userSession, props.history]);
 
 
     let errorMessage = null;
