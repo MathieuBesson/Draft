@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/App';
 import Firebase, { FirebaseContext } from './components/Firebase';
 import reportWebVitals from './reportWebVitals';
+import "./layout/index.scss";
 
 ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>

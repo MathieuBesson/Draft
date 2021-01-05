@@ -39,13 +39,14 @@ const Product = (props) => {
     return (
         <div>
             {!!product &&
-                <div className="card" style={{width: "18rem"}}>
+                <div className="card" style={{width: "18rem"}} >
                     <img className="card-img-top" src={product.image} alt={product.name} />
                         <div className="card-body">
                             <h5 className="card-title">{product.name}</h5>
                             <p className="card-text">{product.content}</p>
                             <button className="btn btn-primary" onClick={() => setQuantity((quantity -1 < 0) ? 0 : quantity -1)}>-</button><span> {quantity} </span><button className="btn btn-primary" onClick={() => setQuantity(quantity +1)}>+</button>
                             <button className="btn btn-primary mt-3" onClick={() => addToCart(product)}>Ajouter à mon backpack !</button>
+                            
                         </div>
                 </div>}
         </div>

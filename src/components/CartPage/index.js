@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom"
 import UserSessionContext from '../UserSession'
 import { FirebaseContext } from '../Firebase'
+import  Header from '../Header'
+
 
 
 
@@ -49,6 +51,7 @@ const CartPage = (props) => {
 
     return (
         <div>
+            <Header/>
             {props.cart.length !== 0 ?
                 <div>
                     {props.cart.map(product =>

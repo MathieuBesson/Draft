@@ -1,0 +1,144 @@
+$primary-color: #1a1e27;
+
+.primary-title {
+    font-weight: 900;
+    font-size: 122px;
+    color: white;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.presentation__content {
+    text-shadow: 0px 4px 6px #0000002e;
+    text-align: center;
+    font-size: 30px;
+    width: 55rem;
+    margin: auto;
+    color: white;
+    margin-bottom: 70px;
+}
+
+.quality-board__content {
+    font-size: 20px;
+    color: $primary-color;
+}
+
+.secondary-title {
+    font-weight: 900;
+    font-size: 50px;
+    color: $primary-color;
+    text-align: left;
+    margin-bottom: 60px;
+}
+
+.quality-board__block {
+    width: 50%;
+}
+
+.quality-board .fp-tableCell {
+    display: flex;
+    &::after {
+        width: 60%;
+        height: 116%;
+        content: " ";
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/snow-board-app-70ada.appspot.com/o/home-boards.svg?alt=media&token=fb95902a-e5b4-43db-b622-8a72eeabdbf1");
+        position: absolute;
+        right: -100px;
+        top: -150px;
+    }
+}
+
+.quality-board__image {
+    width: 100%;
+}
+
+.quality-board__list{
+    margin-top: 65px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.quality-board__list-item{
+    font-weight: 900;
+    flex: 1 1 10%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    img{
+        height: 70px;
+        margin-bottom: 35px;
+    }
+}
+
+.new-collection  .secondary-title{
+    text-align: center;
+}
+
+.new-collection__list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+.new-collection__img{
+    flex: 0 0 16%;
+    width: 10px;
+}
+.video{
+    position: relative;
+    overflow: hidden;
+}
+.video__title{
+    position: absolute;
+    bottom: -5px;
+    z-index: 4500;
+    color: white;
+}
+
+.wrapper__video{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.athletes{
+    background-color: $primary-color;
+    .secondary-title{
+        color: white;
+        text-align: center;
+    }
+    &::after{
+        position: absolute;
+        right: -150px;
+        bottom: -25vh;
+        width: 600px;
+        height: 100%;
+        content: " ";
+        background: url("https://firebasestorage.googleapis.com/v0/b/snow-board-app-70ada.appspot.com/o/athletes-2.png?alt=media&token=10e04b08-efc7-456a-b1b0-1a7cb2f38997") no-repeat;
+    }
+
+    &::before{
+        position: absolute;
+        left: 0;
+        bottom: -25vh;
+        width: 600px;
+        height: 100%;
+        content: " ";
+        background: url("https://firebasestorage.googleapis.com/v0/b/snow-board-app-70ada.appspot.com/o/athletes-1.png?alt=media&token=ac6f136f-502c-40fc-96ae-f7cc9a6c120f") no-repeat;
+    }
+}
+
+.athletes-content{
+    color: white;
+    width: 30%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 65px;
+}
+
+.specificity{
+    .secondary-title{
+        text-align: center;
+    }
+}

@@ -13,8 +13,7 @@ import AccountPage from '../AccountPage';
 import ForgetPassword from '../ForgetPassword';
 import UserSessionContext from '../UserSession';
 import { FirebaseContext } from '../Firebase';
-import AdminProducts from '../Admin/Products'
-import AdminCommandes from '../Admin/Commandes'
+import Admin from '../Admin'
 import Product from '../Product'
 
 function App() {
@@ -79,24 +78,21 @@ function App() {
 		<div>
 			<Router>
 				<UserSessionContext.Provider value={{ userSession, userData }}>
-					<Header />
-
-					<div className="container">
+					{/* <div className="container"> */}
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route path="/authentification" component={Authentification} />
-							<Route exact path="/produits" component={ProductsPage} />
+							<Route exact path="/shop" render={(props) => <ProductsPage {...props} UpdateCart={(newProduct, id) => handleUpdateCart(newProduct, id)} />}/>
 							<Route path="/produits/:slug" render={(props) => <Product {...props} UpdateCart={(newProduct, id) => handleUpdateCart(newProduct, id)} />}/>
-							<Route path="/collaborations" component={CollaborationsPage} />
+							<Route path="/athletes" component={CollaborationsPage} />
 							<Route path="/panier" render={(props) => <CartPage {...props} UpdateProductQuantity={(id, newQuantity) => handleUpdateCartQuantity(id, newQuantity)} cart={cart} deleteProduct={(id) => handleDeleteProduct(id)} deleteCart={() => setCart([])}/>} />
 							<Route path="/mon-compte" component={AccountPage} />
 							<Route path="/mot-de-passe-oublie" component={ForgetPassword} />
-							<Route path="/admin/produits" component={AdminProducts} />
-							<Route path="/admin/commandes" component={AdminCommandes} />
+							<Route path="/admin" component={Admin} />
 							<Route component={ErrorPage} />
 						</Switch>
-					</div>
-					<Footer />
+					{/* </div> */}
+					{/* <Footer /> */}
 				</UserSessionContext.Provider>
 			</Router>
 

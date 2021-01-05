@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import LogOut from '../LogOut';
 import UserSessionContext from '../UserSession'
+import Header from '../Header'
+
 
 
 const AccountPage = (props) => {
@@ -27,6 +29,7 @@ const AccountPage = (props) => {
 
     return (
         <div>
+            <Header />
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
             {userSession.userData !== null &&
             <div className="card" style={{width: "18rem"}}>
