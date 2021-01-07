@@ -15,6 +15,8 @@ import UserSessionContext from '../UserSession';
 import { FirebaseContext } from '../Firebase';
 import Admin from '../Admin'
 import Product from '../Product'
+import ScrollToTop from '../Scroll'
+
 
 function App() {
 
@@ -79,6 +81,7 @@ function App() {
 			<Router>
 				<UserSessionContext.Provider value={{ userSession, userData }}>
 					{/* <div className="container"> */}
+					<ScrollToTop />
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route path="/authentification" component={Authentification} />
@@ -86,9 +89,9 @@ function App() {
 							<Route path="/produits/:slug" render={(props) => <Product {...props} UpdateCart={(newProduct, id) => handleUpdateCart(newProduct, id)} />}/>
 							<Route path="/athletes" component={CollaborationsPage} />
 							<Route path="/panier" render={(props) => <CartPage {...props} UpdateProductQuantity={(id, newQuantity) => handleUpdateCartQuantity(id, newQuantity)} cart={cart} deleteProduct={(id) => handleDeleteProduct(id)} deleteCart={() => setCart([])}/>} />
-							<Route path="/mon-compte" component={AccountPage} />
+							{/* <Route path="/mon-compte" component={AccountPage} /> */}
 							<Route path="/mot-de-passe-oublie" component={ForgetPassword} />
-							<Route path="/admin" component={Admin} />
+							<Route exact path="/admin" component={Admin} />
 							<Route component={ErrorPage} />
 						</Switch>
 					{/* </div> */}

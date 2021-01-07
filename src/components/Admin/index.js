@@ -1,23 +1,41 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import AdminCommandes from './Commandes';
 import AdminProducts from './Products';
 import Header from '../Header';
+import UserSessionContext from '../UserSession'
 
 
 
 const Admin = (props) => {
 
     const [currentComponent, setCurrentComponent] = useState(0)
+    const userSession = useContext(UserSessionContext);
+    const history = useHistory()
+
+
+    useEffect(() => {
+        if (userSession.userData ===null || userSession.userData.role !== 'admin') {
+            history.push({
+                pathname: '/',
+            })
+        }
+        return () => {
+
+        }
+    }, [userSession, history]);
+
+
     return (
         <>
-        <Header />
+        <Header background={{backgroundColor: "#1B2B40"}}/>
         <div className="container" style={{ marginTop: "150px" }}>
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class={"nav-link " + (currentComponent === 0 ? "active" : "")} style={{cursor: "pointer"}} onClick={() => setCurrentComponent(0)}>Commandes</a>
+            <ul className="nav nav-tabs">
+                <li className="nav-item">
+                    <a className={"nav-link " + (currentComponent === 0 ? "active" : "")} style={{cursor: "pointer"}} onClick={() => setCurrentComponent(0)}>Commandes</a>
                 </li>
-                <li class="nav-item">
-                    <a class={"nav-link " + (currentComponent === 1 ? "active" : "")} style={{cursor: "pointer"}} onClick={() => setCurrentComponent(1)}>Produits</a>
+                <li className="nav-item">
+                    <a className={"nav-link " + (currentComponent === 1 ? "active" : "")} style={{cursor: "pointer"}} onClick={() => setCurrentComponent(1)}>Produits</a>
                 </li>
 
             </ul>

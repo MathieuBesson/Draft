@@ -1,11 +1,14 @@
 .auth-form{
-    display: none;
+    padding: 50px;
+
 }
 
-.active-link{
-    background-color: red;
-}
-
-.active-content{
-    display: block;
+.auth-form__link{
+    text-decoration: underline;
+    cursor: pointer;
+    color:#6c757d;
+    &:hover{
+        color:#4f5458;
+        text-decoration: underline;
+    }
 }

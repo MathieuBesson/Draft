@@ -27,7 +27,7 @@ const ProductsPage = (props) => {
         );
         const firstProduct = productsCollection.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]
         setCurrentProduct(firstProduct)
-        designBoard.current.style.setProperty('--background', `url(${firstProduct.image})`)
+        designBoard.current.style.setProperty('--background', `url(${firstProduct.mainImage})`)
 
     }, [firebase.products]);
 
@@ -54,22 +54,20 @@ const ProductsPage = (props) => {
 
     const handleClick = (product) => {
         setCurrentProduct(product)
-        designBoard.current.style.setProperty('--background', `url(${product.image})`)
+        designBoard.current.style.setProperty('--background', `url(${product.mainImage})`)
     }
 
     const addToCart = (product) => {
         history.push("/panier"); 
-        // console.log(props)
-        return props.UpdateCart({...product, quantity: 1}, product.id)
+        return props.UpdateCart({...product, quantity: 1, length: "152cm"}, product.id)
     }
 
 
     return (
         <>
-            <Header />
+            <Header background={{background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"}}/>
             <div className="products" >
                 {console.log(boardDeco)}
-                {/* {boardDeco} */}
                 <div className="products__header" style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/header-bg-shop.png')` }}>
                     <img src={`${process.env.PUBLIC_URL}/logo-monde-lumineux.png`} />
                 </div>
@@ -79,7 +77,7 @@ const ProductsPage = (props) => {
                             {products.map((product) => {
                                 return (
                                     <li key={product.id} className={"products__item " + (!!currentProduct && product.id === currentProduct.id ? "zoom" : '')} onClick={() => { handleClick(product) }}>
-                                        <img src={product.image} alt={product.name} />
+                                        <img src={product.mainImage} alt={product.name} />
                                     </li>
                                 );
                             })}

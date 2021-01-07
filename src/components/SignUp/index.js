@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { FirebaseContext } from '../Firebase'
 import './SignUp.scss'
-import UserSessionContext from '../UserSession'
 import { useHistory } from 'react-router-dom';
 
 
@@ -10,21 +9,7 @@ const SignUp = (props) => {
     //ttM5.....
 
     const firebase = useContext(FirebaseContext);
-    const userSession = useContext(UserSessionContext);
     const history = useHistory()
-
-
-    useEffect(()=> {
-        if(userSession.userSession !== null){
-            history.push({
-                pathname: '/mon-compte',
-                state: { errorMessage: 'Vous êtes déjà connecté' }
-            })
-        }
-        return () => {
-			
-		}
-    }, [userSession, history]);
 
     let formValues = { 'signUpLastName': {}, 'signUpFirstName': {}, 'signUpEmail': {}, 'signUpPassword': {}, 'signUpPasswordConfirm': {} };
     for (const item in formValues) {
@@ -104,13 +89,13 @@ const SignUp = (props) => {
     }
 
     const btnSubmit =
-            signUpCondition.signUpLastName.condition() &&
+        signUpCondition.signUpLastName.condition() &&
             signUpCondition.signUpFirstName.condition() &&
             signUpCondition.signUpEmail.condition() &&
             signUpCondition.signUpPassword.condition() &&
             signUpCondition.signUpPasswordConfirm.condition()
-            ? <button type="submit" className="btn btn-primary">Inscription</button>
-            : <button type="submit" className="btn btn-primary disabled" aria-disabled="true" disabled>Inscription</button>
+            ? <button type="submit" className="btn-first">Inscription</button>
+            : <button type="submit" className="btn-first disabled" aria-disabled="true" disabled>Inscription</button>
 
 
     const errorMsg = error !== '' && <div className="alert alert-danger" role="alert">{error.message}</div>
@@ -118,34 +103,24 @@ const SignUp = (props) => {
     return (
         <form onSubmit={handleSubmit} className={'auth-form ' + (props.display && 'active-content')}>
             {errorMsg}
-            <div className="form-group">
-                <label htmlFor="signUpLastName">Nom</label>
-                <input onChange={handleChange} value={signUpLastName.content} type="text" className="form-control" id="signUpLastName" placeholder="Dupond" required autoComplete="off" />
-                {signUpData.signUpLastName.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpLastName.textError}</small>}
-            </div>
-            <div className="form-group">
-                <label htmlFor="signUpFirstName">Prénom</label>
-                <input onChange={handleChange} value={signUpFirstName.content} type="text" className="form-control" id="signUpFirstName" placeholder="Jean" required autoComplete="off" />
-                {signUpData.signUpFirstName.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpFirstName.textError}</small>}
-            </div>
-            <div className="form-group">
-                <label htmlFor="signUpEmail">Adresse e-mail</label>
-                <input onChange={handleChange} value={signUpEmail.content} type="email" className="form-control" id="signUpEmail" placeholder="jean.dupond@monmail.com" required autoComplete="off" />
-                {signUpData.signUpEmail.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpEmail.textError}</small>}
-            </div>
-            <div className="form-group">
-                <label htmlFor="signUpPassword">Mot de passe</label>
-                <input onChange={handleChange} value={signUpPassword.content} type="text" className="form-control" id="signUpPassword" placeholder="*******" required />
-                {signUpData.signUpPassword.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpPassword.textError}</small>}
-            </div>
-            <div className="form-group">
-                <label htmlFor="signUpPasswordConfirm">Confirmation du mot de passe</label>
-                <input onChange={handleChange} value={signUpPasswordConfirm.content} type="text" className="form-control" id="signUpPasswordConfirm" placeholder="*******" required />
-                {signUpData.signUpPasswordConfirm.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpPasswordConfirm.textError}</small>}
-            </div>
+            <input onChange={handleChange} value={signUpLastName.content} type="text" className="input" id="signUpLastName" placeholder="Nom" required />
+            {signUpData.signUpLastName.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpLastName.textError}</small>}
+
+            <input onChange={handleChange} value={signUpFirstName.content} type="text" className="input" id="signUpFirstName" placeholder="Prénom" required />
+            {signUpData.signUpFirstName.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpFirstName.textError}</small>}
+
+            <input onChange={handleChange} value={signUpEmail.content} type="email" className="input" id="signUpEmail" placeholder="Adresse e-mail" required />
+            {signUpData.signUpEmail.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpEmail.textError}</small>}
+
+
+            <input onChange={handleChange} value={signUpPassword.content} type="text" className="input" id="signUpPassword" placeholder="Mot de passe" required />
+            {signUpData.signUpPassword.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpPassword.textError}</small>}
+
+            <input onChange={handleChange} value={signUpPasswordConfirm.content} type="text" className="input" id="signUpPasswordConfirm" placeholder="Confirmation du mot de passe" required />
+            {signUpData.signUpPasswordConfirm.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpPasswordConfirm.textError}</small>}
 
             {btnSubmit}
-            <small id="emailHelp" className="form-text text-muted">Déjà inscrit ?  <span onClick={() => props.tabChoice('login')}>Connectez-vous</span></small>
+            <small id="emailHelp" className="form-text text-muted">Déjà inscrit ?  <span className="auth-form__link" onClick={() => props.tabChoice('login')}>Connectez-vous</span></small>
         </form>
     );
 }

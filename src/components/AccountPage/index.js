@@ -29,7 +29,7 @@ const AccountPage = (props) => {
 
     return (
         <div>
-            <Header />
+            <Header background={{backgroundColor: "#1B2B40"}} />
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
             {userSession.userData !== null &&
             <div className="card" style={{width: "18rem"}}>

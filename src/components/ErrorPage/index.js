@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../Header';
+import Footer from '../Footer';
+import './ErrorPage.scss'
 
 const ErrorPage = () => {
     return (
-        <div>
-            <div className="d-flex justify-content-center align-items-center d-flex flex-column" id="main">
-                <img src="https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png" style={{height: "250px", width: "250px"}} alt="Page erreur"></img>
-                <h1 className="mr-3 pr-3 align-top border-right inline-block align-content-center mt-5">404</h1>
-                <div className="col-4 d-flex justify-content-center text-center flex-column">
-                    <h2 className="font-weight-normal lead mb-3" id="desc">The page you requested was not found.</h2>
-                    <Link className="btn btn-success text-center w-50 m-auto " to="/">Retouner à la page d'acceuil</Link>
-                </div>
-            </div>
-        </div>
+        <>
+            <Header background={{background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"}}/>
+            <article className="error-page" style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/404.jpg')` }}>
+                <p className="error-page__content">Vous êtes visiblement perdu…</p>
+                <Link className="btn-first" to="/">Retouner à la page d'acceuil</Link>
+            </article>
+            <Footer type="normal" />
+
+        </>
     );
 }
 

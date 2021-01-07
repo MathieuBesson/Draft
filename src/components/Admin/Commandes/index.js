@@ -8,13 +8,15 @@ const AdminCommandes = (props) => {
     const firebase = useContext(FirebaseContext);
     const [commands, setCommands] = useState([])
 
-    const fetchProducts = useCallback(async () => {
+    const fetchProducts = useCallback(async (mounted) => {
         const commandCollection = await firebase.commands.get();
         setCommands(
             commandCollection.docs.map((doc) => {
                 return { ...doc.data(), id: doc.id }
             })
+
         );
+
     }, [firebase.commands])
 
     useEffect(() => {
@@ -37,10 +39,9 @@ const AdminCommandes = (props) => {
 
     return (
         <div>
-            
             <h2 className="mt-4">Administration : Récapitulatif des commandes </h2>
-            <table class="table table-striped mt-4">
-                <thead class="thead-dark">
+            <table className="table table-striped mt-4">
+                <thead className="thead-dark">
                     <tr>
                         <th scope="col">Utilisateur</th>
                         <th scope="col">Modalités</th>
@@ -51,27 +52,27 @@ const AdminCommandes = (props) => {
                 </thead>
                 <tbody>
                     {commands !== [] && commands.map((command) => (
-                            <tr key={command.id}>
-                                <th>{command.userId.email}</th>
-                                <td>
-                                    Commandé le : {DateToString(command.date)}<br />
-                                    Livraison le : {DateToString(command.date + 1000 * 60 * 60 * 24 * 5)} <br/>
+                        <tr key={command.id}>
+                            <th>{command.userId.email}</th>
+                            <td>
+                                Commandé le : {DateToString(command.date)}<br />
+                                    Livraison le : {DateToString(command.date + 1000 * 60 * 60 * 24 * 5)} <br />
                                     Lieu : {command.place}
-                                </td>
-                                <td className="d-flex flex-column">
-                                    {command.command.map((command) => (
-                                        <td key={uid(command)}>
-                                            Nom : {command.name}<br />
+                            </td>
+                            <td className="d-flex flex-column">
+                                {command.command.map((command) => (
+                                    <p key={uid(command)}>
+                                        Nom : {command.name}<br />
                                             Prix : {command.price} €<br />
                                             Quantité : {command.quantity}<br />
-                                        </td>
-                                    ))}
-                                </td>
-                                <td>
-                                    Total : {command.total} €<br/>
-                                    <button className="btn btn-primary" onClick={() => handleDelete(command.id)}>Commande livrée</button>
-                                </td>
-                            </tr>
+                                    </p>
+                                ))}
+                            </td>
+                            <td>
+                                Total : {command.total} €<br />
+                                <button className="btn btn-primary" onClick={() => handleDelete(command.id)}>Commande livrée</button>
+                            </td>
+                        </tr>
 
                         // <div className="card flex-row" key={command.id}>
                         //     <h5 className="card-title">Utilisateur : {command.userId.email}</h5>
@@ -97,8 +98,6 @@ const AdminCommandes = (props) => {
                     ))}
                 </tbody>
             </table>
-
-
         </div>
     );
 }

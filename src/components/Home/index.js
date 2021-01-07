@@ -17,7 +17,7 @@ const Home = () => {
 
     return (
         <>
-        <Header/>
+        <Header background={{background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"}}/>
         <ReactFullpage
             scrollOverflow={true}
             navigation={true}

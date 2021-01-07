@@ -4,7 +4,7 @@ import Header from '../Header'
 const CollaborationsPage = () => {
     return (
         <div>
-            <Header />
+            <Header background={{backgroundColor: "#1B2B40"}}/>
             CollaborationsPage
         </div>
     );

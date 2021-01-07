@@ -71,27 +71,24 @@ const Login = (props) => {
     const btnSubmit =
             loginCondition.loginEmail.condition() &&
             loginCondition.loginPassword.condition()
-            ? <button type="submit" className="btn btn-primary">Connexion</button>
-            : <button type="submit" className="btn btn-primary disabled" aria-disabled="true" disabled>Connexion</button>
+            ? <button type="submit" className="btn-first">Connexion</button>
+            : <button type="submit" className="btn-first disabled" aria-disabled="true" disabled>Connexion</button>
 
     const errorMsg = error !== '' && <div className="alert alert-danger" role="alert">{error.message}</div>
 
     return (
         <form onSubmit={handleSubmit} className={'auth-form ' + (props.display && 'active-content')}>
             {errorMsg}
-            <div className="form-group">
-                <label htmlFor="loginEmail">Adresse e-mail</label>
-                <input type="email" value={loginData.loginEmail.content} onChange={handleData} className="form-control" id="loginEmail" placeholder="jean.dupond@monmail.com" />
+
+                <input type="email" value={loginData.loginEmail.content} onChange={handleData} className="input" id="loginEmail" placeholder="Adresse e-mail" />
                 {loginData.loginEmail.error && <small id="emailHelp" className="form-text text-danger">{loginData.loginEmail.textError}</small>}
-            </div>
-            <div className="form-group">
-                <label htmlFor="loginPassword">Mot de passe</label>
-                <input type="password" value={loginData.loginPassword.content} onChange={handleData} className="form-control" id="loginPassword" placeholder="*******" />
+
+                <input type="password" value={loginData.loginPassword.content} onChange={handleData} className="input" id="loginPassword" placeholder="Mot de passe" />
                 {loginData.loginPassword.error && <small id="emailHelp" className="form-text text-danger">{loginData.loginPassword.textError}</small>}
-            </div>
+
             {btnSubmit}
-            <small id="emailHelp" className="form-text text-muted">Pas de compte ? <span onClick={() => props.tabChoice('signUp')}>Inscrivez-vous</span></small>
-            <small id="emailHelp" className="form-text text-muted"><Link to="/mot-de-passe-oublie">Mot de passe oublié</Link></small>
+            <small id="emailHelp" className="form-text text-muted">Pas de compte ? <span className="auth-form__link" onClick={() => props.tabChoice('signUp')}>Inscrivez-vous</span></small>
+            <small id="emailHelp" className="form-text text-muted"><Link className="auth-form__link" to="/mot-de-passe-oublie">Mot de passe oublié</Link></small>
         </form>
     );
 }

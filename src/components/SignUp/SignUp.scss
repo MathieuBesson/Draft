@@ -1,12 +1,14 @@
 
 .auth-form{
-    display: none;
+    padding: 50px;
+    .btn-first{
+        width: 35%;
+        margin: 35px auto 25px auto;
+    }
 }
 
-.active-link{
-    background-color: red;
+.auth-form__link{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-.active-content{
-    display: block;
-}

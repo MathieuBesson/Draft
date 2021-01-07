@@ -1,19 +1,27 @@
-import React, { useEffect, useContext, useState, useCallback } from 'react';
+import React, { useEffect, useContext, useState, useCallback, Fragment } from 'react';
 import { FirebaseContext } from '../../Firebase'
+import Header from '../../Header'
+
 
 const AdminCommandes = (props) => {
 
     const firebase = useContext(FirebaseContext);
 
     const [products, setProducts] = useState([]);
-    const [fileUrl, setFileUrl] = React.useState(null);
+    const [file, setFile] = useState({});
+    // const [fileUrl, setFileUrl] = useState(null);
+    // const [fileUrl, setFileUrl] = useState(null);
+
+    const [error, setError] = useState(null);
+
 
     const onFileChange = async (e) => {
-        const file = e.target.files[0];
+        const fileSrc = e.target.files[0];
         const storageRef = firebase.storage.ref();
-        const fileRef = storageRef.child(file.name);
-        await fileRef.put(file);
-        setFileUrl(await fileRef.getDownloadURL());
+        const fileRef = storageRef.child(fileSrc.name);
+        await fileRef.put(fileSrc);
+        console.log(file)
+        setFile({ ...file, [e.target.name]: await fileRef.getDownloadURL() });
     };
 
     const fetchProducts = useCallback(async () => {
@@ -30,21 +38,34 @@ const AdminCommandes = (props) => {
         const name = e.target.name.value;
         const price = e.target.price.value;
         const content = e.target.content.value;
-        if (!name || !fileUrl || !price || !content) {
+        console.log(file.mainFile, file.secondFile, file.thirdFile)
+        if (!name || file.mainFile === null || file.secondFile === null || file.thirdFile === null || !price || !content) {
+            setError('Tous vos champs ne sont pas remplis')
             return;
         }
+        setError(null)
         await firebase.products.set({
             name,
-            image: fileUrl,
+            mainImage: file.mainFile,
             price,
             content,
-            slug: slugify(name)
+            slug: slugify(name),
+            files: { mainFile: file.mainFile, secondFile: file.secondFile, thirdFile: file.thirdFile }
         }).then(() => {
             e.target.name.value = '';
             e.target.price.value = null;
             e.target.content.value = '';
             fetchProducts();
         });
+        // console.log(file)
+        // console.log({
+        //         name,
+        //         mainImage: file.mainFile,
+        //         price,
+        //         content,
+        //         slug: slugify(name),
+        //         files: {mainFile: file.mainFile, secondFile: file.secondFile, thirdFile: file.thirdFile}
+        //     })
 
     };
 
@@ -78,32 +99,41 @@ const AdminCommandes = (props) => {
     }, [fetchProducts]);
 
     return (
-        <div>
+        <>
+            {console.log(file)}
+            <Header background={{ backgroundColor: "#1B2B40" }} />
             <h2 className="mt-4">Administration : Page des produits </h2>
             <form className="mt-3 mb-5" onSubmit={onSubmit}>
                 <h3>Créer un produit</h3>
-                <div class="form-group">
-                    <label for="name">Nom</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Mistral" />
+                {!!error && <div className="alert alert-danger" role="alert">{error}</div>}
+                <div className="form-group">
+                    <label htmlFor="name">Nom</label>
+                    <input type="text" className="form-control" name="name" id="name" placeholder="Mistral" />
                 </div>
-                <div class="form-group">
-                    <label for="price">Prix</label>
-                    <input type="number" class="form-control" name="price" id="price" placeholder="Password" />
+                <div className="form-group">
+                    <label htmlFor="price">Prix</label>
+                    <input type="number" className="form-control" name="price" id="price" placeholder="350" />
                 </div>
-                <div class="form-group">
-                    <label for="content">Description</label>
-                    <textarea class="form-control" id="content" name="content" rows="3" placeholder="Le produit est.."></textarea>
+                <div className="form-group">
+                    <label htmlFor="content">Description</label>
+                    <textarea className="form-control" id="content" name="content" rows="3" placeholder="Le produit est.."></textarea>
                 </div>
-                <div class="form-group">
-                    <input type="file" onChange={onFileChange} class="form-control-file" id="image" />
+                <div className="form-group">
+                    <input type="file" onChange={onFileChange} name="mainFile" className="form-control-file" id="image" />
                 </div>
-                <button type="submit" class="btn btn-primary">Enregister le produit</button>
+                <div className="form-group">
+                    <input type="file" onChange={onFileChange} name="secondFile" className="form-control-file" id="image" />
+                </div>
+                <div className="form-group">
+                    <input type="file" onChange={onFileChange} name="thirdFile" className="form-control-file" id="image" />
+                </div>
+                <button type="submit" className="btn btn-primary">Enregister le produit</button>
             </form>
             <ul className="d-flex">
                 {products.map((product) => {
                     return (
                         <li key={product.id} className="mb-5 mr-3">
-                            <img max-width="600" src={product.image} alt={product.name} />
+                            <img max-width="600" src={product.mainImage} alt={product.name} />
                             <p>{product.name}</p>
                             <p>{product.price} €</p>
                             <button className="btn btn-primary" onClick={() => handleDelete(product.id)}>Delete</button>
@@ -111,7 +141,7 @@ const AdminCommandes = (props) => {
                     );
                 })}
             </ul>
-        </div>
+        </>
     );
 }
 
