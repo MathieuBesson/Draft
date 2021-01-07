@@ -70,7 +70,7 @@ const AdminCommandes = (props) => {
                             </td>
                             <td>
                                 Total : {command.total} €<br />
-                                <button className="btn btn-primary" onClick={() => handleDelete(command.id)}>Commande livrée</button>
+                                <button className="btn-first m-0" onClick={() => handleDelete(command.id)}>Commande livrée</button>
                             </td>
                         </tr>
 

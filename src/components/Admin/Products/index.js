@@ -100,8 +100,6 @@ const AdminCommandes = (props) => {
 
     return (
         <>
-            {console.log(file)}
-            <Header background={{ backgroundColor: "#1B2B40" }} />
             <h2 className="mt-4">Administration : Page des produits </h2>
             <form className="mt-3 mb-5" onSubmit={onSubmit}>
                 <h3>Créer un produit</h3>
@@ -127,16 +125,16 @@ const AdminCommandes = (props) => {
                 <div className="form-group">
                     <input type="file" onChange={onFileChange} name="thirdFile" className="form-control-file" id="image" />
                 </div>
-                <button type="submit" className="btn btn-primary">Enregister le produit</button>
+                <button type="submit" className="btn-first m-0">Enregister le produit</button>
             </form>
-            <ul className="d-flex">
+            <ul className="d-flex flex-wrap">
                 {products.map((product) => {
                     return (
-                        <li key={product.id} className="mb-5 mr-3">
+                        <li key={product.id} className="mb-5 mr-3 card">
                             <img max-width="600" src={product.mainImage} alt={product.name} />
-                            <p>{product.name}</p>
-                            <p>{product.price} €</p>
-                            <button className="btn btn-primary" onClick={() => handleDelete(product.id)}>Delete</button>
+                            <h3 className="card-title">{product.name}</h3>
+                            <p className="card-text">{product.price} €</p>
+                            <button className="btn-second" onClick={() => handleDelete(product.id)}>Delete</button>
                         </li>
                     );
                 })}

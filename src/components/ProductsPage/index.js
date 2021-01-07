@@ -11,9 +11,7 @@ const ProductsPage = (props) => {
     const firebase = useContext(FirebaseContext);
 
     const [products, setProducts] = useState([]);
-    // const [currentProductId, setCurrentProductId] = useState(0);
     const [currentProduct, setCurrentProduct] = useState(null);
-    const [boardDeco, setBoardDeco] = useState();
     const designBoard = useRef(null);
     let history = useHistory()
 
@@ -65,10 +63,11 @@ const ProductsPage = (props) => {
 
     return (
         <>
-            <Header background={{background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"}}/>
+            <Header cartLenght={props.cartLenght} background={{background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"}}/>
             <div className="products" >
-                {console.log(boardDeco)}
                 <div className="products__header" style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/header-bg-shop.png')` }}>
+                    <h1 className="primary-title">Nouvelle Collection</h1>
+                    <div className="vertical-hr"></div>
                     <img src={`${process.env.PUBLIC_URL}/logo-monde-lumineux.png`} />
                 </div>
                 <div className="products__part">

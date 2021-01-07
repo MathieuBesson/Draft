@@ -3,7 +3,6 @@ import { NavLink, Link } from 'react-router-dom';
 import UserSessionContext from '../UserSession'
 import LogOut from '../LogOut'
 import { FirebaseContext } from '../Firebase'
-
 import './Header.scss'
 
 
@@ -35,6 +34,7 @@ const Header = (props) => {
                         <li className="menu__nav-item">
                             <NavLink className="menu__nav-link cart-nav" activeClassName='is-active' to="/panier">
                                 <img src={process.env.PUBLIC_URL + '/cart.svg'} />
+                                {props.cartLenght !== 0 && <span className="menu__nav-link-cart-number">{props.cartLenght}</span>}
                             </NavLink>
                         </li>
                         {!!user.userData ?

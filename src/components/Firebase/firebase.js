@@ -30,24 +30,26 @@ class Firebase {
 
     passwordReset = email => this.auth.sendPasswordResetEmail(email); 
 
-    user = uid => this.db.doc(`user/${uid}`);
+    user = uid => this.db.doc(`users/${uid}`);
 
     products = {
-        set : (params) => this.db.collection("snow").doc().set(params),
-        get : () => this.db.collection("snow").get(),
-        delete : (param) => this.db.collection("snow").doc(param).delete()
+        set : (params) => this.db.collection("snows").doc().set(params),
+        get : () => this.db.collection("snows").get(),
+        delete : (param) => this.db.collection("snows").doc(param).delete()
     }
-
 
     commands = {
         set : (params) => this.db.collection("commands").doc().set(params),
         get : () => this.db.collection("commands").orderBy("date").get(),
         delete : (param) => this.db.collection("commands").doc(param).delete()
-
     }
 
-    
-
+    athletes = {
+        set : (params) => this.db.collection("athletes").doc().set(params),
+        get : () => this.db.collection("athletes").get(),
+        delete : (param) => this.db.collection("athletes").doc(param).delete()
+    }
 }
+
 
 export default Firebase;

@@ -8,6 +8,8 @@ import ErrorPage from '../ErrorPage';
 import Authentification from '../Authentification';
 import ProductsPage from '../ProductsPage';
 import CollaborationsPage from '../CollaborationsPage';
+import Collaboration from '../Collaboration';
+
 import CartPage from '../CartPage';
 import AccountPage from '../AccountPage';
 import ForgetPassword from '../ForgetPassword';
@@ -80,22 +82,19 @@ function App() {
 		<div>
 			<Router>
 				<UserSessionContext.Provider value={{ userSession, userData }}>
-					{/* <div className="container"> */}
 					<ScrollToTop />
 						<Switch>
-							<Route exact path="/" component={Home} />
-							<Route path="/authentification" component={Authentification} />
-							<Route exact path="/shop" render={(props) => <ProductsPage {...props} UpdateCart={(newProduct, id) => handleUpdateCart(newProduct, id)} />}/>
-							<Route path="/produits/:slug" render={(props) => <Product {...props} UpdateCart={(newProduct, id) => handleUpdateCart(newProduct, id)} />}/>
-							<Route path="/athletes" component={CollaborationsPage} />
-							<Route path="/panier" render={(props) => <CartPage {...props} UpdateProductQuantity={(id, newQuantity) => handleUpdateCartQuantity(id, newQuantity)} cart={cart} deleteProduct={(id) => handleDeleteProduct(id)} deleteCart={() => setCart([])}/>} />
-							{/* <Route path="/mon-compte" component={AccountPage} /> */}
+							<Route exact path="/" render={(props) => <Home {...props} cartLenght={cart.length}/>} />
+							<Route path="/authentification" render={(props) => <Authentification {...props} cartLenght={cart.length}/>} />
+							<Route exact path="/shop" render={(props) => <ProductsPage {...props} cartLenght={cart.length} UpdateCart={(newProduct, id) => handleUpdateCart(newProduct, id)} />}/>
+							<Route path="/produits/:slug" render={(props) => <Product {...props} cartLenght={cart.length} UpdateCart={(newProduct, id) => handleUpdateCart(newProduct, id)} />}/>
+							<Route path="/athletes/:slug" render={(props) => <Collaboration {...props} cartLenght={cart.length} />}/>
+							<Route path="/athletes" render={(props) => <CollaborationsPage {...props} cartLenght={cart.length}/>} />
+							<Route path="/panier" render={(props) => <CartPage {...props} cartLenght={cart.length} UpdateProductQuantity={(id, newQuantity) => handleUpdateCartQuantity(id, newQuantity)} cart={cart} deleteProduct={(id) => handleDeleteProduct(id)} deleteCart={() => setCart([])}/>} />
 							<Route path="/mot-de-passe-oublie" component={ForgetPassword} />
-							<Route exact path="/admin" component={Admin} />
+							<Route exact path="/admin" render={(props) => <Admin {...props} cartLenght={cart.length} />} />
 							<Route component={ErrorPage} />
 						</Switch>
-					{/* </div> */}
-					{/* <Footer /> */}
 				</UserSessionContext.Provider>
 			</Router>
 

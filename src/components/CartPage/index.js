@@ -4,10 +4,7 @@ import UserSessionContext from '../UserSession'
 import { FirebaseContext } from '../Firebase'
 import Header from '../Header'
 import Footer from '../Footer'
-
 import './CartPage.scss'
-
-
 
 
 const CartPage = (props) => {
@@ -15,11 +12,22 @@ const CartPage = (props) => {
     const user = useContext(UserSessionContext);
     const firebase = useContext(FirebaseContext);
     let history = useHistory();
+    const deliveryPlaceHomeDefault = { adresse: "", poste: "", city: "" };
 
 
-    const deliveryPlaces = ["Chamonix-Mont-Blanc", "Val-d'Isère", "La Plagne", "L'Alpe D'Huez", "Les deux Alpes"];
-    const [deliveryPlace, setDeliveryPlaces] = useState("Chamonix-Mont-Blanc");
+    const deliveryPlacesStations = ["Chamonix-Mont-Blanc", "Val-d'Isère", "La Plagne", "L'Alpe D'Huez", "Les deux Alpes"];
+    const [deliveryPlaceStation, setDeliveryPlaceStation] = useState("");
+    const [deliveryPlaceHome, setDeliveryPlaceHome] = useState(deliveryPlaceHomeDefault);
     const [activeTab, setActiveTab] = useState('cart');
+    const [cardBank, setCardBank] = useState({
+        number: "**** **** **** ****",
+        owner: "Jean Dupond",
+        validDate: "00 / 00",
+        CVC: "000"
+    });
+    const [errorMessage, setErrorMessage] = useState(null)
+
+
 
     useEffect(() => {
         if (user.userSession === null) {
@@ -32,6 +40,18 @@ const CartPage = (props) => {
 
     const handleCommand = async (e) => {
         e.preventDefault();
+        setErrorMessage(null)
+        const noDeliveryPlace = deliveryPlaceStation === "" && JSON.stringify(deliveryPlaceHome) === JSON.stringify(deliveryPlaceHomeDefault);
+        const twoDeliveryPlace = deliveryPlaceStation !== "" && JSON.stringify(deliveryPlaceHome) !== JSON.stringify(deliveryPlaceHomeDefault);
+        const deliveryPlaceHomeNoComplete = deliveryPlaceHome.adresse === "" || deliveryPlaceHome.poste === "" || deliveryPlaceHome.city === ""
+        if (noDeliveryPlace || twoDeliveryPlace) {
+            setErrorMessage("Choisissez entre la livraison à domicile en station en vidant les champs non concernés")
+            return
+        } 
+        if (deliveryPlaceHomeNoComplete && deliveryPlaceStation === ""){
+            setErrorMessage("Les champs adresse, code postal et ville doivent être complété")
+            return
+        }
         const userId = user.userData;
         userId.id = user.userSession.uid;
         props.deleteCart();
@@ -41,8 +61,9 @@ const CartPage = (props) => {
             command: props.cart,
             total: calcTotal(props.cart),
             date: Date.now(),
-            place: deliveryPlace
+            place: !deliveryPlaceStation ? Object.keys(deliveryPlaceHome).map((key) => deliveryPlaceHome[key] + " ") : deliveryPlaceStation
         });
+        history.push("/");
     }
 
     function calcTotal(arr) {
@@ -54,12 +75,19 @@ const CartPage = (props) => {
         return date.toLocaleString()
     }
 
+    const HandleCheckInfos = () => {
+        setActiveTab("payement")
+    }
+
 
     return (
         <>
-            <Header background={{ backgroundColor: "#1B2B40" }} />
+            <Header cartLenght={props.cartLenght} background={{ backgroundColor: "#1B2B40" }} />
             <div className="cart">
+                {console.log(deliveryPlaceStation)}
+                {console.log(deliveryPlaceHome)}
                 <article className="container">
+                    {!!errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
                     {props.cart.length !== 0 ?
                         <article className="cart__not-empty">
                             <article className="card cart__infos-cart">
@@ -97,22 +125,25 @@ const CartPage = (props) => {
                                                 <section className="card__body-delivery-home">
                                                     <h3 className="card-title">Livraison à domicile</h3>
                                                     <div className="card__body-delivery-home-group">
-                                                        <input className="input" type="text" placeholder="Adresse" />
-                                                        <input className="input" type="number" placeholder="Code Postal" />
-                                                        <input className="input" type="text" placeholder="Ville" />
+                                                        <input className="input" type="text" name="adresse" placeholder="Adresse" value={deliveryPlaceHome.adresse} onChange={(e) => setDeliveryPlaceHome({ ...deliveryPlaceHome, [e.target.name]: e.target.value })} />
+                                                        <input className="input" type="number" name="poste" placeholder="Code Postal" value={deliveryPlaceHome.poste} onChange={(e) => setDeliveryPlaceHome({ ...deliveryPlaceHome, [e.target.name]: e.target.value })} />
+                                                        <input className="input" type="text" name="city" placeholder="Ville" value={deliveryPlaceHome.city} onChange={(e) => setDeliveryPlaceHome({ ...deliveryPlaceHome, [e.target.name]: e.target.value })} />
                                                     </div>
                                                 </section>
+                                                <section className="card__body-delivery-choice">
+                                                    <span className="card-title">Ou</span>
+                                                </section>
                                                 <section className="card__body-station-delivery">
-                                                    <h3 className="card-title">Livraison en station</h3>
-                                                    <select name="station" id="station" className="input">
+                                                    <h3 className="card-title">Livraison en station (Mairie)</h3>
+                                                    <select name="station" id="station" className="input" onChange={(e) => setDeliveryPlaceStation(e.target.value)} value={deliveryPlaceStation}>
                                                         <option value=""> - Choisir une station - </option>
-                                                        {deliveryPlaces.map((item) => (
+                                                        {deliveryPlacesStations.map((item) => (
                                                             <option value={item}>{item}</option>
                                                         ))}
                                                     </select>
                                                 </section>
                                             </article>
-                                            <button className="btn-first" onClick={() => setActiveTab("payement")}>Passer au paiement</button>
+                                            <button className="btn-first" onClick={() => HandleCheckInfos()}>Passer au paiement</button>
                                         </>
                                     )}
                                     {(activeTab === 'payement') && (
@@ -121,14 +152,19 @@ const CartPage = (props) => {
                                                 <h3 className="card-title">informations de paiement</h3>
                                                 <div className="card__body-payement-group">
                                                     <div className="card__body-payement-group-inputs">
-                                                        <input className="input" type="text" placeholder="Titutaire de la carte" />
-                                                        <input className="input" type="number" placeholder="0000 0000 0000 0000" />
+                                                        <input className="input" type="text" placeholder="Titutaire de la carte" onChange={(e) => setCardBank({ ...cardBank, owner: e.target.value })} />
+                                                        <input className="input" type="number" placeholder="0000 0000 0000 0000" onChange={(e) => setCardBank({ ...cardBank, number: e.target.value })} />
                                                         <div className="card__body-payement-group-list">
-                                                            <input className="input" type="text" placeholder="Date de validité (00/00)" />
-                                                            <input className="input" type="text" placeholder="CVC" />
+                                                            <input className="input" type="text" placeholder="Date de validité (00/00)" onChange={(e) => setCardBank({ ...cardBank, validDate: e.target.value })} />
+                                                            <input className="input" type="text" placeholder="CVC" onChange={(e) => setCardBank({ ...cardBank, CVC: e.target.value })} />
                                                         </div>
                                                     </div>
-                                                    <div className="card__body-payement-bank-card" style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/bank-card.svg')` }}></div>
+                                                    <div className="card__body-payement-bank-card" style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/bank-card.svg')` }}>
+                                                        <span className="bank-card-number">{cardBank.number}</span>
+                                                        <span className="bank-card-owner">M. / Mme {cardBank.owner}</span>
+                                                        <span className="bank-card-validDate">{cardBank.validDate}</span>
+                                                        <span className="bank-card-CVC">{cardBank.CVC}</span>
+                                                    </div>
                                                 </div>
                                             </article>
                                             <button className="btn-first" onClick={() => setActiveTab("payement")} onClick={handleCommand}>Payer</button>
@@ -171,6 +207,14 @@ const CartPage = (props) => {
                                     <div className="cart__recap-group">
                                         <span className="card-content">Livraison</span>
                                         <span className="card-content">Gratuite</span>
+                                    </div>
+                                    <div className="cart__recap-group">
+                                        <span className="card-content">Lieu</span>
+                                        <span className="card-content text-right ml-5">{!deliveryPlaceStation ? Object.keys(deliveryPlaceHome).map((key) => deliveryPlaceHome[key] + " ") : deliveryPlaceStation}</span>
+                                    </div>
+                                    <div className="cart__recap-group">
+                                        <span className="card-content">Date</span>
+                                        <span className="card-content">{DateToString(Date.now() + 1000 * 60 * 60 * 24 * 5)}</span>
                                     </div>
                                     <hr />
                                     <div className="cart__recap-group">

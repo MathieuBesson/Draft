@@ -71,3 +71,27 @@
     color: white;
     margin-left: 7rem;
 }
+
+.menu__nav-link-cart-number{
+    top: 28px;
+    right: -15px;
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    color: #f2081b;
+    z-index:3000;
+    border-radius: 50%;
+    background-color: white;
+    border: #f2081b solid 2px;
+    font-size: 13px;
+    padding-left: 1px;
+    padding-top: 1px;
+    font-weight: 700;
+    text-align: center;
+
+}
+
+.menu__nav-link-cart-number:before{
+
+
+}

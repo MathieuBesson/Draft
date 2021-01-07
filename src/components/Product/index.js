@@ -13,15 +13,13 @@ const Product = (props) => {
     const [length, setLength] = useState("152CM")
     const [currentImg, setCurrentImg] = useState()
 
-
-
     let history = useHistory()
 
     let { slug } = useParams();
     const firebase = useContext(FirebaseContext);
 
     const fetchProduct = useCallback(async () => {
-        firebase.db.collection("snow").where("slug", "==", slug).get()
+        firebase.db.collection("snows").where("slug", "==", slug).get()
             .then((querySnapshot) => {
                 setProduct(
                     ...querySnapshot.docs.map((doc) => {
@@ -53,7 +51,7 @@ const Product = (props) => {
 
     return (
         <>
-            <Header background={{ backgroundColor: "#1B2B40" }} />
+            <Header cartLenght={props.cartLenght} background={{ backgroundColor: "#1B2B40" }} />
             <article className="product" id="product">
                 <div className="container">
                     {!!product &&

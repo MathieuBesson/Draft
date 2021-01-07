@@ -113,10 +113,10 @@ const SignUp = (props) => {
             {signUpData.signUpEmail.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpEmail.textError}</small>}
 
 
-            <input onChange={handleChange} value={signUpPassword.content} type="text" className="input" id="signUpPassword" placeholder="Mot de passe" required />
+            <input onChange={handleChange} value={signUpPassword.content} type="password" className="input" id="signUpPassword" placeholder="Mot de passe" required />
             {signUpData.signUpPassword.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpPassword.textError}</small>}
 
-            <input onChange={handleChange} value={signUpPasswordConfirm.content} type="text" className="input" id="signUpPasswordConfirm" placeholder="Confirmation du mot de passe" required />
+            <input onChange={handleChange} value={signUpPasswordConfirm.content} type="password" className="input" id="signUpPasswordConfirm" placeholder="Confirmation du mot de passe" required />
             {signUpData.signUpPasswordConfirm.error && <small id="emailHelp" className="form-text text-danger">{signUpData.signUpPasswordConfirm.textError}</small>}
 
             {btnSubmit}
