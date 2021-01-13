@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FirebaseContext } from '../Firebase'
+import { FirebaseContext } from '../../helpers/Firebase'
 
 
 const ForgetPassword = () => {

@@ -1,12 +1,11 @@
 import React, { Fragment, useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import UserSessionContext from '../UserSession'
-import LogOut from '../LogOut'
-import { FirebaseContext } from '../Firebase'
+import UserSessionContext from '../../helpers/UserSession'
+import { FirebaseContext } from '../../helpers/Firebase'
 import './Header.scss'
 
 
-const Header = (props) => {
+const Header = ({background, cartLenght}) => {
 
     const user = useContext(UserSessionContext);
     const firebase = useContext(FirebaseContext);
@@ -18,8 +17,8 @@ const Header = (props) => {
 
     return (
         <>
-        {console.log(props.background)}
-            <div className="menu" style={props.background}>
+        {console.log(background)}
+            <div className="menu" style={background}>
                 <nav className="container">
                     <NavLink className="menu__nav-link" to="/">
                         <img style={{ height: "40px", width: "153px" }} src={process.env.PUBLIC_URL + '/logo.svg'} />
@@ -34,7 +33,7 @@ const Header = (props) => {
                         <li className="menu__nav-item">
                             <NavLink className="menu__nav-link cart-nav" activeClassName='is-active' to="/panier">
                                 <img src={process.env.PUBLIC_URL + '/cart.svg'} />
-                                {props.cartLenght !== 0 && <span className="menu__nav-link-cart-number">{props.cartLenght}</span>}
+                                {cartLenght !== 0 && <span className="menu__nav-link-cart-number">{cartLenght}</span>}
                             </NavLink>
                         </li>
                         {!!user.userData ?

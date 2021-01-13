@@ -1,0 +1,36 @@
+@import "layout/global.scss";
+
+[class^= "btn-"]{
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    &:focus{
+        outline: none;
+    }
+}
+
+.btn-first{
+    background: $secondary-color ;
+    color: white;
+    border: 0;
+    &:hover{
+        color: white;
+        box-shadow: 0px 3px 25px darken($secondary-color, 5%);
+    }
+    &.disabled{
+        background: darken($secondary-color, 3%);
+        &:hover{
+            box-shadow: none;
+        }
+    }
+}
+
+.btn-second{
+    border-color: $secondary-color;
+    background: transparent;
+    color: $secondary-color;
+}

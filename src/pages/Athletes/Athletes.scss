@@ -1,0 +1,88 @@
+.athletes-page__header {
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.athletes-page__body {
+    padding: 100px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+
+.black-card {
+    background-color: #1a1e27;
+    height: 800px;
+    padding: 55px 50px;
+    border-radius: 53px;
+}
+
+.black-card-title,
+.black-card-content {
+    color: white;
+}
+.black-card:nth-of-type(1) {
+    .btn-first {
+        margin: 0;
+    }
+}
+.black-card:nth-of-type(1) {
+    .btn-first {
+        margin: 0;
+    }
+    // &.athletes-page__item{
+    //     background-position-x: left;
+    // }
+}
+
+.black-card:nth-of-type(2n) {
+    text-align: center;
+    // &.athletes-page__item{
+    //     background-position-x: center;
+    // }
+}
+
+.black-card:nth-of-type(3n) {
+    text-align: right;
+    .btn-first {
+        margin-right: 0;
+    }
+    // &.athletes-page__item{
+    //     background-position-x: right;
+    // }
+}
+
+.approach__body {
+    margin-bottom: 150px;
+    .secondary-title {
+        text-align: center;
+    }
+}
+
+.athletes-page__item {
+    flex: 0 1 28%;
+    margin-bottom: 90px;
+    .btn-first {
+        width: 50%;
+    }
+}
+
+.athletes-page {
+    background-color: #f5f5f5;
+}
+
+.athletes-page__item {
+    background-size: auto 400px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+.approach__body-content {
+    text-align: center;
+    width: 70%;
+    margin: auto;
+}

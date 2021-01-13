@@ -1,30 +1,24 @@
-.footer .fp-tableCell{
-    padding: 40px 15%;
+.footer,
+.footer .fp-tableCell {
+    &:not(.fp-tableCell) {
+        padding: 40px 15%;
+    }
     background-color: white;
     display: flex !important;
     justify-content: space-between;
     align-items: center;
 }
 
-.footer.normal{
-    padding: 40px 15%;
-    background-color: white;
-    display: flex !important;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer__group{
+.footer__group {
     display: flex;
     align-items: center;
     margin-bottom: 0;
-    img{
+    justify-content: space-between;
+    flex: 1 1 20%;
+    img {
         width: 100%;
     }
-    li{
-        margin: 0 7px;
-    }
-    .footer__network{
-        margin: 0 40px;
+    &.footer__network {
+        padding: 0 60px;
     }
 }
