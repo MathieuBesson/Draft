@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { FirebaseContext } from 'helpers/Firebase'
+import Button from 'components/Button';
+
 import './SignUp.scss'
 import { useHistory } from 'react-router-dom';
 
@@ -122,8 +124,8 @@ const SignUp = (props) => {
             {signUpData.signUpPasswordConfirm.error && dangerMsg(signUpData.signUpPasswordConfirm.textError)}
 
             { checkField()
-                ? <button type="submit" className="btn-first">Inscription</button>
-                : <button type="submit" className="btn-first disabled" aria-disabled="true" disabled>Inscription</button>}
+                ? <Button action="submit" type="btn-first">Inscription</Button>
+                : <Button action="submit" type="btn-first disabled" disabled>Inscription</Button>}
             <small id="emailHelp" className="form-text text-muted">Déjà inscrit ?  <span className="auth-form__link" onClick={() => props.tabChoice('login')}>Connectez-vous</span></small>
         </form>
     );

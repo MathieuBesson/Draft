@@ -1,0 +1,24 @@
+.order-summary{
+    width: 25%;
+    height: 325px;
+}
+
+.order-summary-group{
+    display: flex;
+    justify-content: space-between;
+    .card-title{
+        margin-bottom: 0;
+    }
+}
+
+.order-summary-list{
+    margin-top: 40px;
+    display: flex;
+    li{
+        span{margin-top: 10px;}
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 16px;
+    }
+}

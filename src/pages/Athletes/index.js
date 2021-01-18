@@ -1,8 +1,13 @@
 import React, { useEffect, useContext, useState, useCallback } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { FirebaseContext } from 'helpers/Firebase'
-import Header from 'components/Header'
+import MainMenu from 'components/MainMenu'
 import Footer from 'components/Footer'
+import Button from 'components/Button'
+import Header from 'components/Header'
+import Card from 'components/Card'
+
+
 import './Athletes.scss'
 
 const Athletes = (props) => {
@@ -43,18 +48,18 @@ const Athletes = (props) => {
 
     return (
         <>
-            <Header cartLenght={props.cartLenght} background={{ background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)" }} />
+            <MainMenu cartLenght={props.cartLenght} type={'gradient'} />
             <article className="athletes-page">
-                <div className="athletes-page__header" style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/header-bg-shop.png')` }}>
+                <Header type="athletes-page__header" backgroundUrl={process.env.PUBLIC_URL +'/header-bg-shop.png'}>
                     <h1 className="primary-title">Nos Athlètes<span className="red-point">.</span></h1>
-                </div>
+                </Header>
                 <article className="athletes-page__body container">
                 {athletes.map(athlete => (
-                    <section key={athlete.id} className="athletes-page__item black-card" style={{ backgroundImage: `url('${athlete.cutOutImage}')` }}>
-                        <h3 className="black-card-title third-title">{`${athlete.firstName} ${athlete.lastName}`}</h3>
-                        <p className="black-card-content">{athlete.shortDescription}</p>
-                        <Link to={`/athletes/${slugify(`${athlete.firstName} ${athlete.lastName}`)}`} className="btn-first">Voir en détail</Link>
-                    </section>
+                    <Card keyCard={athlete.id} type="athletes-page__item black-card card" style={{ backgroundImage: `url('${athlete.cutOutImage}')` }}>
+                        <h3 className="third-title athletes-page__item-title ">{`${athlete.firstName} ${athlete.lastName}`}</h3>
+                        <p className="card-content">{athlete.shortDescription}</p>
+                        <Link to={`/athletes/${slugify(`${athlete.firstName} ${athlete.lastName}`)}`}><Button type="btn-first">Voir en détail</Button></Link>
+                    </Card>
                 ))}
                 </article>
                 <article className="approach__body container">

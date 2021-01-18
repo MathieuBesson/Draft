@@ -1,7 +1,7 @@
 @import "layout/global.scss";
 
 [class^= "btn-"]{
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-radius: 8px;
     text-align: center;
     display: block;
@@ -15,6 +15,7 @@
 
 .btn-first{
     background: $secondary-color ;
+    border-color: $secondary-color;
     color: white;
     border: 0;
     &:hover{
@@ -22,7 +23,7 @@
         box-shadow: 0px 3px 25px darken($secondary-color, 5%);
     }
     &.disabled{
-        background: darken($secondary-color, 3%);
+        background: lighten($secondary-color, 15%);
         &:hover{
             box-shadow: none;
         }
@@ -33,4 +34,16 @@
     border-color: $secondary-color;
     background: transparent;
     color: $secondary-color;
+}
+
+
+.btn-third{
+    border-color: transparent;
+    background: white;
+    color: $third-color;
+    &:hover{
+        color: white;
+        background: transparent;
+        border-color: white;
+    }
 }

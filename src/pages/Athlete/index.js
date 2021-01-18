@@ -1,14 +1,17 @@
-import React, { useEffect, useState, useContext, useCallback, } from 'react';
-import { useParams } from 'react-router-dom'
-import { FirebaseContext } from 'helpers/Firebase'
-import Header from 'components/Header'
-import Footer from 'components/Footer'
-
+import React, { useEffect, useState, useContext, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { FirebaseContext } from 'helpers/Firebase';
+import MainMenu from 'components/MainMenu';
+import Footer from 'components/Footer';
+import Header from 'components/Header';
+import Card from 'components/Card';
 import './Athlete.scss'
 
 const Athlete = (props) => {
 
     const [athlete, setAthlete] = useState(null)
+    let history = useHistory()
 
     let { slug } = useParams();
     const firebase = useContext(FirebaseContext);
@@ -33,28 +36,28 @@ const Athlete = (props) => {
 
     return (
         <>
-            <Header cartLenght={props.cartLenght} background={{ background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)" }} />
+            <MainMenu cartLenght={props.cartLenght} type={'gradient'} />
             {!!athlete &&
                 <article className="athlete">
-                    <header className="athlete__header" style={{ backgroundImage: `url('${athlete.mainImage}')` }}>
+                    <Header backgroundUrl={athlete.mainImage}>
                         <h1 className="primary-title container">{athlete.firstName} {athlete.lastName}<span className="red-point">.</span></h1>
-                    </header>
+                    </Header>
                     <div className="athlete__block container">
-                        <article className="card athlete__personal-infos">
+                        <Card type="athlete__personal-infos">
                             <h3 className="third-title">Faits personnels<span className="red-point">.</span></h3>
-                            <div>
-                                <span className="athlete__block-subtitle">Date de naissance</span>
-                                <p className="athlete__block-info">{athlete.birthday}</p>
-                            </div>
-                            <div>
-                                <span className="athlete__block-subtitle">Nationnalité</span>
-                                <p className="athlete__block-info">{athlete.nationality}</p>
-                            </div>
-                            <div>
-                                <span className="athlete__block-subtitle">Discipline</span>
-                                <p className="athlete__block-info">{athlete.discipline}</p>
-                            </div>
-                        </article>
+                            <section>
+                                <span className="card-subtitle">Date de naissance</span>
+                                <p className="card-info">{athlete.birthday}</p>
+                            </section>
+                            <section>
+                                <span className="card-subtitle">Nationnalité</span>
+                                <p className="card-info">{athlete.nationality}</p>
+                            </section>
+                            <section>
+                                <span className="card-subtitle">Discipline</span>
+                                <p className="card-info">{athlete.discipline}</p>
+                            </section>
+                        </Card>
                         <iframe className="athlete__video" src={athlete.video} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div className="athlete__block container">
@@ -62,16 +65,15 @@ const Athlete = (props) => {
                             <h3 className="third-title">Biographie<span className="red-point">.</span></h3>
                             <p className="athlete__block-content">{athlete.biography}</p>
                         </article>
-                        <article className="card athlete__palmares">
+                        <Card type="athlete__palmares">
                             <h3 className="third-title">Palmarès<span className="red-point">.</span></h3>
-                            {console.log(athlete.palmares)}
                             {Object.keys(athlete.palmares).map((key, index) => (
-                                <div key={index}>
-                                    <span className="athlete__block-subtitle">{key}</span>
-                                    <p className="athlete__block-info">{athlete.palmares[key]}</p>
-                                </div>
+                                <section key={index}>
+                                    <span className="card-subtitle">{key}</span>
+                                    <p className="card-info">{athlete.palmares[key]}</p>
+                                </section>
                             ))}
-                        </article>
+                        </Card>
                     </div>
                 </article>
             }

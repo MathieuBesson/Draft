@@ -2,8 +2,11 @@ import React, { useState, Fragment, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Login from 'components/Login';
 import SignUp from 'components/SignUp';
-import Header from 'components/Header';
+import MainMenu from 'components/MainMenu';
 import Footer from 'components/Footer';
+import Header from 'components/Header';
+import Card from 'components/Card';
+
 import './Authentification.scss'
 
 
@@ -28,9 +31,9 @@ const Authentification = ({location, isConnected, cartLenght}) => {
 
     return (
         <>
-            <Header cartLenght={cartLenght}  background={{background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"}}/>
-            <article className="authentification" style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/auth-bg.jpg')` }}>
-                <div className="card">
+            <MainMenu cartLenght={cartLenght}  type={'gradient'}/>
+            <Header type="authentification" backgroundUrl={process.env.PUBLIC_URL +'/auth-bg.jpg'}>
+                <Card className="card">
                     <div className="card-head">
                         <h2 className={`authentification__title ${activeClass('login')}`} onClick={() => settabAuthentification('login')}>Connexion</h2>
                         <h2 className={`authentification__title ${activeClass('signUp')}`} onClick={() => settabAuthentification('signUp')}>Inscription</h2>
@@ -38,8 +41,8 @@ const Authentification = ({location, isConnected, cartLenght}) => {
                     {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
                     <Login display={tabAuthentification === 'login'} tabChoice={(choice) => settabAuthentification(choice)} />
                     <SignUp display={tabAuthentification === 'signUp'} tabChoice={(choice) => settabAuthentification(choice)} />
-                </div>
-            </article>
+                </Card>
+            </Header>
             <Footer/>
         </>
     );

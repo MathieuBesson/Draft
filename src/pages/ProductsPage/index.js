@@ -1,9 +1,11 @@
 import React, { useEffect, useContext, useState, useCallback, Fragment, useRef } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { FirebaseContext } from 'helpers/Firebase'
+import Button  from 'components/Button';
+import Header  from 'components/Header';
 import './Products.scss'
 import Footer from 'components/Footer'
-import Header from 'components/Header'
+import MainMenu from 'components/MainMenu'
 
 
 const ProductsPage = (props) => {
@@ -63,33 +65,32 @@ const ProductsPage = (props) => {
 
     return (
         <>
-            <Header cartLenght={props.cartLenght} background={{ background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)" }} />
+            <MainMenu cartLenght={props.cartLenght} type={'gradient'} />
             <div className="products" >
-                <div className="products__header" style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/header-bg-shop.png')` }}>
+                <Header type="products__header" backgroundUrl={process.env.PUBLIC_URL +'/header-bg-shop.png'}>
                     <h1 className="primary-title">Nouvelle Collection</h1>
                     <div className="vertical-hr"></div>
                     <img src={`${process.env.PUBLIC_URL}/logo-monde-lumineux.png`} />
-                </div>
+                </Header>
                 <div className="products__part">
                     <div className="container">
                         <div className="products__list">
                             {products.map((product) => {
                                 return (
-                                    <li key={product.id} className={"products__item " + (!!currentProduct && product.id === currentProduct.id ? "zoom" : '')} onClick={() => { handleClick(product) }}>
+                                    <section key={product.id} className={"card products__item " + (!!currentProduct && product.id === currentProduct.id ? "zoom" : '')} onClick={() => { handleClick(product) }}>
                                         <img src={product.mainImage} alt={product.name} />
-                                    </li>
+                                    </section>
                                 );
                             })}
                         </div>
-                        {console.log(currentProduct)}
                         {!!currentProduct &&
                             <div ref={designBoard} className="products__current-product" >
                                 <h3 className="products__currrent-name">{currentProduct.name}<span className="red-point">.</span></h3>
                                 <p className="products__currrent-content">{currentProduct.content}</p>
                                 <h3 className="products__currrent-price">{currentProduct.price}€</h3>
                                 <div className="products__group-button">
-                                    <Link className="btn-first" to={`/produits/${slugify(currentProduct.name)}`}>Voir en détail</Link>
-                                    <button className="btn-second" onClick={() => addToCart(currentProduct)}>Achat rapide</button>
+                                    <Link to={`/produits/${slugify(currentProduct.name)}`}><Button type="btn-first">Voir en détail</Button></Link>
+                                    <Button type="btn-second" clickAction={() => addToCart(currentProduct)}>Achat rapide</Button>
                                 </div>
                             </div>
                         }

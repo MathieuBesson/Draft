@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FirebaseContext } from 'helpers/Firebase'
+import { FirebaseContext } from 'helpers/Firebase';
+import  Button  from 'components/Button';
+
 import './Login.scss'
 
 
@@ -71,8 +73,8 @@ const Login = (props) => {
     const btnSubmit =
             loginCondition.loginEmail.condition() &&
             loginCondition.loginPassword.condition()
-            ? <button type="submit" className="btn-first">Connexion</button>
-            : <button type="submit" className="btn-first disabled" aria-disabled="true" disabled>Connexion</button>
+            ? <Button action="submit" type="btn-first">Connexion</Button>
+            : <Button action="submit" type="btn-first disabled" disabled>Connexion</Button>
 
     const errorMsg = error !== '' && <div className="alert alert-danger" role="alert">{error.message}</div>
 

@@ -1,6 +1,5 @@
 .products {
     .btn-first, .btn-second {
-        width: 20%;
         margin: 0;
         margin-right: 25px;
     }
@@ -12,10 +11,6 @@
 
 
 .products__header {
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
     img {
         width: 30%;
     }
@@ -46,12 +41,9 @@
 }
 
 .products__item {
-    background-color: white;
     width: 275px;
-    padding: 53px 65px;
     cursor: pointer;
-    box-shadow: 0px 6px 31px #0000001a;
-    border-radius: 53px;
+    border-radius: 53px !important;
     margin-right: 81px;
     transition: all 0.2s ease;
     img {

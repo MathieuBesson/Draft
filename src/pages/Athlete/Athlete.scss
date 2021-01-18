@@ -6,13 +6,6 @@
             text-align: center;
         }
     }
-}
-
-.athlete__header{
-    min-height: 100vh;
-    padding-top: 40vh;
-    background-repeat: no-repeat;
-    background-size: cover;
     .primary-title{
         text-align: left;
     }
@@ -38,18 +31,7 @@
     flex: 1 0 60%;
 }
 
-.athlete__block-subtitle{
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #1A1E27;
-    
-}
 
-.athlete__block-info{
-    font-size: 22px;
-    font-weight: 700;
-    margin-top: 10px;
-}
 
 .athlete__block-content{
     margin-top: 30px;

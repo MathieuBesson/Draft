@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { FirebaseContext } from 'helpers/Firebase'
+import  Button  from 'components/Button'
+
 import { uid } from 'react-uid';
 
 
@@ -70,7 +72,7 @@ const AdminCommandes = (props) => {
                             </td>
                             <td>
                                 Total : {command.total} €<br />
-                                <button className="btn-first m-0" onClick={() => handleDelete(command.id)}>Commande livrée</button>
+                                <Button type="btn-first" clickAction={() => handleDelete(command.id)}>Commande livrée</Button>
                             </td>
                         </tr>
 

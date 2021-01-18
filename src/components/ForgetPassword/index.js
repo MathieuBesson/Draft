@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../../helpers/Firebase'
+import Button from 'components/Button'
+
 
 
 const ForgetPassword = () => {
@@ -67,8 +69,8 @@ const ForgetPassword = () => {
     }
 
     const btnSubmit = conditions.email.condition()
-        ? <button type="submit" className="btn btn-primary">Récupérer</button>
-        : <button type="submit" className="btn btn-primary disabled" aria-disabled="true" disabled>Récupérer</button>
+        ? <Button action="submit" type="btn btn-primary">Récupérer</Button>
+        : <Button action="submit" type="btn btn-primary disabled" disabled>Récupérer</Button>
 
     const errorMsg = error !== '' && <div className="alert alert-danger" role="alert">{error.message}</div>
     const successMsg = success !== '' && <div className="alert alert-success" role="alert">{success}</div>

@@ -1,0 +1,14 @@
+.cart-header {
+    display: flex;
+    justify-content: space-around;
+    .third-title{
+        cursor: pointer;
+    }
+}
+
+.cart-title-disabled {
+    color: #d3d3d3 !important;
+    .red-point {
+        color: #d3d3d3;
+    }
+}

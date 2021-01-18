@@ -1,23 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
-import Header from '../components/Header';
-import Home from '../pages/Home';
-import Footer from '../components/Footer';
-import ErrorPage from '../pages/ErrorPage';
-import Authentification from '../pages/Authentification';
-import ProductsPage from '../pages/ProductsPage';
-import Athletes from '../pages/Athletes';
-import Athlete from '../pages/Athlete';
+import Home from 'pages/Home';
+import ErrorPage from 'pages/ErrorPage';
+import Authentification from 'pages/Authentification';
+import ProductsPage from 'pages/ProductsPage';
+import Athletes from 'pages/Athletes';
+import Athlete from 'pages/Athlete';
 
-import Cart from '../pages/Cart';
-import Account from '../pages/Account';
-import ForgetPassword from '../components/ForgetPassword';
-import UserSessionContext from '../helpers/UserSession';
-import { FirebaseContext } from '../helpers/Firebase';
-import Admin from '../pages/Admin'
-import Product from '../pages/Product'
-import ScrollToTop from '../helpers/Scroll'
+import Cart from 'pages/Cart';
+import Account from 'pages/Account';
+import ForgetPassword from 'components/ForgetPassword';
+import UserSessionContext from 'helpers/UserSession';
+import { FirebaseContext } from 'helpers/Firebase';
+import Admin from 'pages/Admin'
+import Product from 'pages/Product'
+import ScrollToTop from 'helpers/Scroll'
 
 
 function App() {
@@ -96,7 +94,7 @@ function App() {
 							<Route path="/panier" render={(props) => <Cart {...props} cartLenght={cart.length} isConnected={isConnected} updateProductQuantity={(id, newQuantity) => handleUpdateCartQuantity(id, newQuantity)} cart={cart} deleteProduct={(id) => handleDeleteProduct(id)} deleteCart={() => setCart([])}/>} />
 							<Route path="/mot-de-passe-oublie" component={ForgetPassword} />
 							<Route exact path="/admin" render={(props) => <Admin {...props} cartLenght={cart.length} isConnected={isConnected}/>} />
-							<Route component={ErrorPage} />
+							<Route render={() => <ErrorPage cartLenght={cart.length}/>} />
 						</Switch>
 				</UserSessionContext.Provider>
 			</Router>

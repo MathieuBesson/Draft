@@ -12,9 +12,9 @@ const Footer = (props) => {
             </ul>
             <img className="footer__group" style={{ height: "40px", width: "153px" }} src={process.env.PUBLIC_URL + '/logo-dark.svg'} />
             <ul className="footer__group footer__network">
-                <li><img src={process.env.PUBLIC_URL + '/youtube-icon.svg'} /></li>
-                <li><img src={process.env.PUBLIC_URL + '/instagram-icon.svg'} /></li>
-                <li><img src={process.env.PUBLIC_URL + '/facebook-icon.svg'} /></li>
+                <li><img src={process.env.PUBLIC_URL + '/icons/youtube-icon.svg'} /></li>
+                <li><img src={process.env.PUBLIC_URL + '/icons/instagram-icon.svg'} /></li>
+                <li><img src={process.env.PUBLIC_URL + '/icons/facebook-icon.svg'} /></li>
             </ul>
         </footer>
     );

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import UserSessionContext from 'helpers/UserSession'
-import Header from 'components/Header'
+import MainMenu from 'components/MainMenu'
 
 
 
@@ -28,7 +28,7 @@ const Account = (props) => {
 
     return (
         <div>
-            <Header background={{backgroundColor: "#1B2B40"}} />
+            <MainMenu type={'plain'} />
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
             {user.userData !== null &&
             <div className="card" style={{width: "18rem"}}>

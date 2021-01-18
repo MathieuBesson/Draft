@@ -1,0 +1,55 @@
+.cart-payement-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-payement-group-inputs{
+    width: 90%;
+}
+
+.cart-payement-group-list{
+    display: flex;
+    justify-content: space-between;
+    input{
+        width: 48%;
+    }
+}
+
+.cart-payement-bank-card{
+    width: 100%;
+    transform: translateY(-50px) ;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right 0% bottom -25px;
+}
+.cart-payement{
+    margin-top: 25px;
+}
+
+
+.bank-card-number{
+    position: absolute;
+    top: 63%;
+    left: 21%;
+}
+
+.bank-card-owner{
+    position: absolute;
+    top: 78%;
+    left: 21%;
+    text-transform: uppercase;
+}
+
+.bank-card-validDate{
+    position: absolute;
+    top: 78%;
+    right: 13%;
+    text-transform: uppercase;
+}
+
+.bank-card-CVC{
+    position: absolute;
+    top: 30%;
+    right: 13%;
+    text-transform: uppercase;
+}

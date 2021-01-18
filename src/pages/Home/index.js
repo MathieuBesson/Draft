@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import ReactFullpage from "@fullpage/react-fullpage";
 import './Home.scss'
 import Footer from 'components/Footer';
-import Header from 'components/Header';
+import MainMenu from 'components/MainMenu';
 import Button from 'components/Button';
+import Header from 'components/Header';
+
 
 
 
@@ -30,18 +32,18 @@ const Home = (props) => {
 
     return (
         <>
-            <Header cartLenght={props.cartLenght} background={{ background: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)" }} />
+            <MainMenu cartLenght={props.cartLenght} type={'gradient'} />
             <ReactFullpage
                 scrollOverflow={true}
                 navigation={true}
                 render={() => {
                     return (
                         <div id="fullpage-wrapper">
-                            <div className="section presentation" style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/banner-home.svg')` }}>
+                            <Header type="section presentation" backgroundUrl={process.env.PUBLIC_URL + '/banner-home.svg'}>
                                 <h1 className="primary-title">Enjoy The Vibes<span className="red-point">.</span></h1>
                                 <p className="presentation__content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.</p>
                                 <Link to='/shop'><Button type="btn-first">Voir notre nouvelle collection</Button></Link>
-                            </div>
+                            </Header>
                             <div className="section quality-board">
                                 <div className="container">
                                     <article className="quality-board__block">
@@ -49,15 +51,15 @@ const Home = (props) => {
                                         <p className="quality-board__content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et </p>
                                         <ul className="quality-board__list">
                                             <li className="quality-board__list-item">
-                                                <img src={`${process.env.PUBLIC_URL}/materials-icon.svg`} />
+                                                <img src={`${process.env.PUBLIC_URL}/icons/materials-icon.svg`} />
                                                 <p>Des matériaux <span className="red-point">nobles</span>.</p>
                                             </li>
                                             <li className="quality-board__list-item">
-                                                <img src={`${process.env.PUBLIC_URL}/flag-icon.svg`} />
+                                                <img src={`${process.env.PUBLIC_URL}/icons/flag-icon.svg`} />
                                                 <p>Made in <span className="red-point">France</span>.</p>
                                             </li>
                                             <li className="quality-board__list-item">
-                                                <img src={`${process.env.PUBLIC_URL}/ecology-icon.svg`} />
+                                                <img src={`${process.env.PUBLIC_URL}/icons/ecology-icon.svg`} />
                                                 <p>Respectueux de l'<span className="red-point">écologie</span>.</p>
                                             </li>
                                         </ul>
@@ -88,7 +90,6 @@ const Home = (props) => {
 
                                         <span className={`specificity__tick-3 ${(currentTab === 2) ? 'active' : ''}`} onClick={() => setCurrentTab(2)}></span>
                                         <span className={`specificity__line-3 ${(currentTab === 2) ? 'active' : ''}`} onClick={() => setCurrentTab(0)}></span>
-
                                     </div>
                                     <div className="specificity__content">
                                         <h3 className="third-title">{specificities[currentTab].title}</h3>

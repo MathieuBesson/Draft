@@ -1,11 +1,9 @@
 .error-page{
+    flex-direction: column;
     padding-top: 16vh;
-    height: 87vh;
-    background-position: bottom -10%;
-    background-size: cover;
-
+    justify-content: flex-start;
     .btn-first{
-        width: 15%;
+        margin: 0;
     }
 }
 .error-page__content{

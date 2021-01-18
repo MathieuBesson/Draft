@@ -1,5 +1,7 @@
 import React, { useEffect, useContext, useState, useCallback, Fragment } from 'react';
 import { FirebaseContext } from '../../helpers/Firebase'
+import Button from 'components/Button'
+
 
 const AdminCommandes = (props) => {
 
@@ -119,7 +121,7 @@ const AdminCommandes = (props) => {
                 <div className="form-group">
                     <input type="file" onChange={onFileChange} name="thirdFile" className="form-control-file" id="image" />
                 </div>
-                <button type="submit" className="btn-first m-0">Enregister le produit</button>
+                <Button action="submit" className="btn-first m-0">Enregister le produit</Button>
             </form>
             <ul className="d-flex flex-wrap">
                 {products.map((product) => {
@@ -128,7 +130,7 @@ const AdminCommandes = (props) => {
                             <img width="200px" src={product.mainImage} alt={product.name} />
                             <h3 className="card-title mt-4">{product.name}</h3>
                             <p className="card-text">{product.price} €</p>
-                            <button className="btn-second" onClick={() => handleDelete(product.id)}>Delete</button>
+                            <Button type="btn-second" clickAction={() => handleDelete(product.id)}>Delete</Button>
                         </li>
                     );
                 })}

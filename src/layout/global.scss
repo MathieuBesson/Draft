@@ -1,5 +1,6 @@
 $primary-color: #1a1e27;
 $secondary-color: #F2081B;
+$third-color: #1B2B40;
 
 .container{
     max-width: 75%;
@@ -15,7 +16,6 @@ $secondary-color: #F2081B;
 
 %title{
     font-weight: 900;
-    margin-bottom: 60px;
 }
 
 .primary-title {
@@ -27,6 +27,7 @@ $secondary-color: #F2081B;
 
 .secondary-title {
     @extend %title;
+    margin-bottom: 60px;
     font-size: 50px;
     color: $primary-color;
     text-align: left;
@@ -37,25 +38,11 @@ $secondary-color: #F2081B;
     font-size: 30px;
     color: $primary-color;
     text-align: none;
-    margin-bottom: 10px;
-}
-
-
-.card-title{
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-.card-content{
     margin-bottom: 20px;
 }
 
-.card{
-    box-shadow: 0px 6px 31px #0000001A;
-    padding: 30px;
-    border-radius: 15px;
-}
+
+
 
 .input{
     background-color: #E9E9E9;

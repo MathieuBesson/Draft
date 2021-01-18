@@ -1,8 +1,4 @@
 @import "../../layout/global.scss";
-.presentation .btn-first{
-    width: 15%;
-}
-
 
 .presentation__content {
     text-shadow: 0px 4px 6px #0000002e;
@@ -65,9 +61,6 @@
     background-size: cover;
     background-position-x: center;
 }
-.new-collection .btn-first{
-    width: 20%;
-}
 
 .new-collection .secondary-title {
     text-align: center;
@@ -127,9 +120,6 @@
         content: " ";
         background: url("https://firebasestorage.googleapis.com/v0/b/snow-board-app-70ada.appspot.com/o/athletes-1.png?alt=media&token=ac6f136f-502c-40fc-96ae-f7cc9a6c120f")
             no-repeat;
-    }
-    .btn-first{
-        width: 15%;
     }
 }
 

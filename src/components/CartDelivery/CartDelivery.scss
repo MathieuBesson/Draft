@@ -1,0 +1,31 @@
+
+
+.cart-delivery{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-delivery-home-group{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.cart-delivery-home, .card__body-station-delivery{
+    width: 45%;
+}
+.card__body-station-delivery-select{
+    width: 100%;
+    option{
+        border: 0;
+    }
+}
+
+.cart-delivery{
+    margin-top: 25px;
+}
+
+.cart-delivery-choice{
+    align-self: center;
+}

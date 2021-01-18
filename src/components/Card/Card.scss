@@ -1,0 +1,38 @@
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.card-content {
+    margin-bottom: 20px;
+}
+
+.card {
+    box-shadow: 0px 6px 31px #0000001a;
+    padding: 30px;
+    border-radius: 15px;
+    border: 0;
+}
+
+.black-card {
+    background-color: #1a1e27;
+    .card-title,
+    .card-content {
+        color: white;
+    }
+}
+
+
+.card-subtitle{
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #1A1E27;
+    
+}
+
+.card-info{
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 10px;
+}

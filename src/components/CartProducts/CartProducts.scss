@@ -1,0 +1,21 @@
+.cart-product{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:not(:last-child){
+        margin-bottom: 45px;
+    }
+}
+.cart-product-img{
+    width: 100px;
+}
+
+.cart-product-icon{
+    cursor: pointer;
+    width: 15px;
+    margin-left: 20px;
+}
+
+.cart-product-quantity{
+    cursor: pointer;
+}

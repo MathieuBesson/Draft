@@ -1,5 +1,7 @@
 import React, { useEffect, useContext, useState, useCallback } from 'react';
 import { FirebaseContext } from '../../helpers/Firebase'
+import  Button  from 'components/Button'
+
 
 
 const AdminAthletes = (props) => {
@@ -209,7 +211,7 @@ const AdminAthletes = (props) => {
                 <div className="form-group">
                     <input type="file" onChange={onFileChange} name="secondFile" className="form-control-file" id="image" />
                 </div>
-                <button type="submit" className="btn-first m-0">Enregister l'athlete</button>
+                <Button action="submit" type="btn-first m-0">Enregister l'athlete</Button>
             </form>
             <ul className="d-flex flex-wrap">
                 {athletes.map((athlete) => {
@@ -218,7 +220,7 @@ const AdminAthletes = (props) => {
                             <img className="w-100" src={athlete.cutOutImage} alt={athlete.id} />
                             <h3 className="card-title">{athlete.firstName} {athlete.lastName}</h3>
                             <p className="card-text">{athlete.discipline}</p>
-                            <button className="btn-second" onClick={() => handleDelete(athlete.id)}>Delete</button>
+                            <Button type="btn-second" clickAction={() => handleDelete(athlete.id)}>Delete</Button>
                         </li>
                     );
                 })}

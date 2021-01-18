@@ -8,106 +8,11 @@
     }
 }
 
-.cart__empty-content {
-    text-align: center;
-    margin: auto;
-    width: 35%;
-    margin-bottom: 35px;
-}
-
-.cart__empty .btn-first {
-    width: 20%;
-}
-
-.card__header {
-    display: flex;
-    justify-content: space-around;
-    .third-title{
-        cursor: pointer;
-    }
-}
-
-.card__title-disabled {
-    color: #d3d3d3 !important;
-    .red-point {
-        color: #d3d3d3;
-    }
-}
-
-.card__body-product{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    &:not(:last-child){
-        margin-bottom: 45px;
-    }
-}
 .card__body{
+    margin: 0 8%;
     .btn-first{
         margin-top: 25px;
     }
-}
-.card__body-img{
-    width: 100px;
-}
-
-.card__body-icon{
-    cursor: pointer;
-    width: 15px;
-    margin-left: 20px;
-}
-
-.card__body-quantity{
-    cursor: pointer;
-}
-
-.card__body-delivery{
-    display: flex;
-    justify-content: space-between;
-}
-
-.card__body-delivery-home-group{
-    display: flex;
-    flex-direction: column;
-}
-
-.card__body-payement-group{
-    display: flex;
-    justify-content: space-between;
-}
-
-.card__body-delivery-home, .card__body-station-delivery{
-    width: 45%;
-}
-.card__body-station-delivery-select{
-    width: 100%;
-    option{
-        border: 0;
-    }
-}
-
-.card__body-delivery, .card__body-payement{
-    margin-top: 25px;
-}
-
-.card__body-payement-group-inputs{
-    width: 90%;
-}
-
-.card__body-payement-group-list{
-    display: flex;
-    justify-content: space-between;
-    input{
-        width: 48%;
-    }
-}
-
-.card__body-payement-bank-card{
-    width: 100%;
-    transform: translateY(-50px) ;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right 0% bottom -25px;
 }
 
 .cart__not-empty{
@@ -115,68 +20,13 @@
     justify-content: space-between;
 }
 
-
-
 .cart__infos-cart{
     width: 70%;
-}
-
-.cart__recap{
-    width: 25%;
-    height: 325px;
-}
-
-.cart__recap-group{
-    display: flex;
-    justify-content: space-between;
-    .card-title{
-        margin-bottom: 0;
-    }
-}
-
-.cart__recap-list{
-    margin-top: 40px;
-    display: flex;
-    li{
-        span{margin-top: 10px;}
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        font-size: 16px;
-    }
 }
 
 input:first-child{
     margin-top: 32px;
 }
 
-.bank-card-number{
-    position: absolute;
-    top: 63%;
-    left: 21%;
-}
 
-.bank-card-owner{
-    position: absolute;
-    top: 78%;
-    left: 21%;
-    text-transform: uppercase;
-}
 
-.bank-card-validDate{
-    position: absolute;
-    top: 78%;
-    right: 13%;
-    text-transform: uppercase;
-}
-
-.bank-card-CVC{
-    position: absolute;
-    top: 30%;
-    right: 13%;
-    text-transform: uppercase;
-}
-
-.card__body-delivery-choice{
-    align-self: center;
-}
