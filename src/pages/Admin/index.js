@@ -17,7 +17,6 @@ const Admin = ({ cartLenght, isConnected }) => {
     const history = useHistory();
 
     useEffect(() => {
-        console.log(isConnected);
         if (!isConnected || user.userData.role !== 'admin') {
             history.push({
                 pathname: '/',
@@ -39,13 +38,16 @@ const Admin = ({ cartLenght, isConnected }) => {
                     <div className="container" style={{ marginTop: "150px" }}>
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
-                                <a className={"nav-link " + (currentComponent === 0 ? "active" : "")} style={{ cursor: "pointer" }} onClick={() => setCurrentComponent(0)}>Commandes</a>
+                                <button className={"nav-link " + (currentComponent === 0 ? "active" : "")} style={{ cursor: "pointer" }} onClick={(e) => {
+                                    e.preventDefault(); setCurrentComponent(0)}}>Commandes</button>
                             </li>
                             <li className="nav-item">
-                                <a className={"nav-link " + (currentComponent === 1 ? "active" : "")} style={{ cursor: "pointer" }} onClick={() => setCurrentComponent(1)}>Produits</a>
+                                <button className={"nav-link " + (currentComponent === 1 ? "active" : "")} style={{ cursor: "pointer" }} onClick={(e) => {
+                                    e.preventDefault(); setCurrentComponent(1)}}>Produits</button>
                             </li>
                             <li className="nav-item">
-                                <a className={"nav-link " + (currentComponent === 2 ? "active" : "")} style={{ cursor: "pointer" }} onClick={() => setCurrentComponent(2)}>Athletes</a>
+                                <button className={"nav-link " + (currentComponent === 2 ? "active" : "")} style={{ cursor: "pointer" }} onClick={(e) => {
+                                    e.preventDefault(); setCurrentComponent(2)}}>Athletes</button>
                             </li>
                         </ul>
                         {currentComponent === 0 && <AdminCommandes />}

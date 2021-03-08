@@ -1,8 +1,8 @@
 import React, { useEffect, useContext, useState, useCallback, Fragment, useRef } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { FirebaseContext } from 'helpers/Firebase'
-import Button  from 'components/Button';
-import Header  from 'components/Header';
+import Button from 'components/Button';
+import Header from 'components/Header';
 import './Products.scss'
 import Footer from 'components/Footer'
 import MainMenu from 'components/MainMenu'
@@ -67,10 +67,10 @@ const ProductsPage = (props) => {
         <>
             <MainMenu cartLenght={props.cartLenght} type={'gradient'} />
             <div className="products" >
-                <Header type="products__header" backgroundUrl={process.env.PUBLIC_URL +'/header-bg-shop.png'}>
+                <Header type="products__header" backgroundUrl={process.env.PUBLIC_URL + '/header-bg-shop.png'}>
                     <h1 className="primary-title">Nouvelle Collection</h1>
                     <div className="vertical-hr"></div>
-                    <img src={`${process.env.PUBLIC_URL}/logo-monde-lumineux.png`} />
+                    <img src={`${process.env.PUBLIC_URL}/logo-monde-lumineux.png`} alt="Logo le monde lumineux"/>
                 </Header>
                 <div className="products__part">
                     <div className="container">
@@ -79,6 +79,13 @@ const ProductsPage = (props) => {
                                 return (
                                     <section key={product.id} className={"card products__item " + (!!currentProduct && product.id === currentProduct.id ? "zoom" : '')} onClick={() => { handleClick(product) }}>
                                         <img src={product.mainImage} alt={product.name} />
+                                        <article className="products__item-details">
+                                            <h3 className="third-title">{product.name}<span className="red-point">.</span></h3>
+                                            <div className="products__item-details-group">
+                                                <Link to={`/produits/${slugify(product.name)}`}><Button type="btn-first">Détails</Button></Link>
+                                                <p className="products__item-details-price">{product.price}€</p>
+                                            </div>
+                                        </article>
                                     </section>
                                 );
                             })}

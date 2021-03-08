@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { FirebaseContext } from 'helpers/Firebase';
 import MainMenu from 'components/MainMenu';
@@ -11,7 +10,6 @@ import './Athlete.scss'
 const Athlete = (props) => {
 
     const [athlete, setAthlete] = useState(null)
-    let history = useHistory()
 
     let { slug } = useParams();
     const firebase = useContext(FirebaseContext);
@@ -58,7 +56,7 @@ const Athlete = (props) => {
                                 <p className="card-info">{athlete.discipline}</p>
                             </section>
                         </Card>
-                        <iframe className="athlete__video" src={athlete.video} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe title="video-player" className="athlete__video" src={athlete.video} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
                     </div>
                     <div className="athlete__block container">
                         <article className="athlete__biographie">

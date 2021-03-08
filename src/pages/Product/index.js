@@ -96,12 +96,14 @@ const Product = (props) => {
                                 <p className="card-content">{product.content}</p>
                                 <div className="product__radio">
                                     <h4 className="card-title">Choix de la taille</h4>
-                                    {sizes.map(size => (
-                                        <>
-                                            <input id={size + 'CM'} value={size + 'CM'} name="platform" type="radio" onChange={(e) => setLength(e.target.value)} checked={length === (size + 'CM')} />
-                                            <label htmlFor={size + 'CM'}>{size + 'CM'}</label>
-                                        </>
-                                    ))}
+                                    <article className="radio-group">
+                                        {sizes.map((size, id) => (
+                                            <div key={id}>
+                                                <input id={size + 'CM'} value={size + 'CM'} name="platform" type="radio" onChange={(e) => setLength(e.target.value)} checked={length === (size + 'CM')} />
+                                                <label htmlFor={size + 'CM'}>{size + 'CM'}</label>
+                                            </div>
+                                        ))}
+                                    </article>
                                 </div>
                                 <article className="product__card-bottom">
                                     <div className="product__quantity">
@@ -120,8 +122,8 @@ const Product = (props) => {
                         <h2 className="secondary-title">Les avantages du produit<span className="red-point">.</span></h2>
                         <div className="product__advantage-list">
                             {advantages.map((item, index) => (
-                                <section className="product__advantage-item">
-                                    <img src={process.env.PUBLIC_URL + '/icons/advantages-icon-' + index + '.svg'}></img>
+                                <section key={index} className="product__advantage-item">
+                                    <img src={process.env.PUBLIC_URL + '/icons/advantages-icon-' + (index +1) + '.svg'} alt="Icon avantages"/>
                                     <div className="product__advantage-infos">
                                         <h3 className="third-title">{item.title}</h3>
                                         <p className="product__advantage-content">{item.content}</p>
@@ -135,13 +137,13 @@ const Product = (props) => {
                         <p className="product__content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
                         <div className="product__details-group">
                             <ul className="product__details-list">
-                                {detailsList.slice(0, Math.ceil(detailsList.length / 2)).map(item => (
-                                    <li>{item}</li>
+                                {detailsList.slice(0, Math.ceil(detailsList.length / 2)).map((item, id) => (
+                                    <li key={id}>{item}</li>
                                 ))}
                             </ul>
                             <ul className="product__details-list">
-                                {detailsList.slice(Math.ceil(detailsList.length / 2)).map(item => (
-                                    <li>{item}</li>
+                                {detailsList.slice(Math.ceil(detailsList.length / 2)).map((item, id) => (
+                                    <li key={id}>{item}</li>
                                 ))}
                             </ul>
                         </div>

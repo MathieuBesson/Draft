@@ -61,11 +61,13 @@ const Login = (props) => {
 
     let loginCondition = {
         'loginEmail': {
+            // regex mail
             condition: (email = loginData.loginEmail.content) => (email.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/) ? true : false),
             errorMsg: 'Votre email n\'est pas valide'
         },
         'loginPassword': {
-            condition: (password = loginData.loginPassword.content) => (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!\.@#\\$%\\^&amp;\\*])(?=.{8,})/) ? true : false),
+            // regex password
+            condition: (password = loginData.loginPassword.content) => (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.@#\\$%\\^&amp;\\*])(?=.{8,})/) ? true : false),
             errorMsg: 'Votre mot de passe doit contenir au minimum: 1 caractère alphabétique minuscule, 1 caractère alphabétique majuscule, un chiffre, un caractère spécial et au moins 8 caractères au total'
         },
     }

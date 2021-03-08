@@ -7,16 +7,19 @@ import Authentification from 'pages/Authentification';
 import ProductsPage from 'pages/ProductsPage';
 import Athletes from 'pages/Athletes';
 import Athlete from 'pages/Athlete';
-
 import Cart from 'pages/Cart';
-import Account from 'pages/Account';
 import ForgetPassword from 'components/ForgetPassword';
 import UserSessionContext from 'helpers/UserSession';
 import { FirebaseContext } from 'helpers/Firebase';
-import Admin from 'pages/Admin'
-import Product from 'pages/Product'
-import ScrollToTop from 'helpers/Scroll'
+import Admin from 'pages/Admin';
+import Product from 'pages/Product';
+import ScrollToTop from 'helpers/Scroll';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
+
+library.add(fab, fas);
 
 function App() {
 
@@ -62,8 +65,7 @@ function App() {
 
 	const handleDeleteProduct = (id) =>{
 		let key;
-		let obj = cart.find((element, index) => {key = index; return element.id === id})
-		let newCart =  cart
+		let newCart =  cart;
 		newCart.splice(key, 1);
 		setCart([...newCart])
 	}
@@ -98,7 +100,6 @@ function App() {
 						</Switch>
 				</UserSessionContext.Provider>
 			</Router>
-
 		</div>
 	);
 }

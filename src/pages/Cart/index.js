@@ -4,7 +4,6 @@ import UserSessionContext from 'helpers/UserSession'
 import { FirebaseContext } from 'helpers/Firebase'
 import MainMenu from 'components/MainMenu'
 import Footer from 'components/Footer'
-import Button from 'components/Button'
 import Card from 'components/Card'
 import PaiementGroup from 'components/PaiementGroup'
 import OrderSummary from 'components/OrderSummary'
@@ -34,7 +33,6 @@ const Cart = ({ deleteCart, cart, isConnected, updateProductQuantity, deleteProd
     const [errorMessage, setErrorMessage] = useState(null)
 
     useEffect(() => {
-        console.log(isConnected)
         if (!isConnected) {
             history.push({
                 pathname: '/authentification',

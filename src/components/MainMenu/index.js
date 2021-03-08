@@ -1,5 +1,5 @@
-import React, { Fragment, useContext } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import UserSessionContext from '../../helpers/UserSession';
 import { FirebaseContext } from '../../helpers/Firebase';
 import Button from 'components/Button';
@@ -10,20 +10,25 @@ const MainMenu = ({cartLenght, type}) => {
 
     const user = useContext(UserSessionContext);
     const firebase = useContext(FirebaseContext);
+    const [openBurger, setOpenBurger] = useState(false);
 
     const handleClickLogOut = e => {
-        firebase.signoutUser()
+        firebase.signoutUser();
     }
-
 
     return (
         <>
             <div className={"menu menu-" + type}>
-                <nav className="container">
+                <div className={(openBurger ? 'open': '') + " menu__burger"} onClick={() => setOpenBurger(!openBurger)}>
+                    <span className="menu__burger-row"></span>
+                    <span className="menu__burger-row"></span>
+                    <span className="menu__burger-row"></span>
+                </div>
+                <nav className="container menu__nav">
                     <NavLink className="menu__nav-link" to="/">
-                        <img style={{ height: "40px", width: "153px" }} src={process.env.PUBLIC_URL + '/logo.svg'} />
+                        <img style={{ height: "40px", width: "153px" }} src={process.env.PUBLIC_URL + '/logo.svg'} alt="DRAFT logo"/>
                     </NavLink>
-                    <ul className="menu__nav-bar">
+                    <ul className={(openBurger ? 'open': '') + " menu__nav-bar "}>
                         <li className="menu__nav-item">
                             <NavLink className="menu__nav-link" activeClassName='is-active' to="/athletes">Athlètes</NavLink>
                         </li>
@@ -32,13 +37,15 @@ const MainMenu = ({cartLenght, type}) => {
                         </li>
                         <li className="menu__nav-item">
                             <NavLink className="menu__nav-link cart-nav" activeClassName='is-active' to="/panier">
-                                <img src={process.env.PUBLIC_URL + '/cart.svg'} />
+                                <img src={process.env.PUBLIC_URL + '/cart.svg'} alt="cart icon"/>
                                 {cartLenght !== 0 && <span className="menu__nav-link-cart-number">{cartLenght}</span>}
                             </NavLink>
                         </li>
                         {!!user.userData ?
                             <li className="menu__nav-item">
-                                <a className="menu__nav-link" onClick={handleClickLogOut}><Button type="btn-third">Deconnexion</Button></a>
+                                <Button type="btn-third" className="menu__nav-link" 
+                                clickAction={handleClickLogOut}
+                                >Deconnexion</Button>
                             </li> :
                             <li className="menu__nav-item">
                                 <NavLink className="menu__nav-link" activeClassName='is-active' to="/authentification"><Button type="btn-third">Connexion - Inscription</Button></NavLink>

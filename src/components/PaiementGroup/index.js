@@ -5,7 +5,7 @@ import './PaiementGroup.scss'
 const PaiementGroup = ({cardBank, handleCardBank, handleCommand}) => {
     return (
         <article className="cart-payement">
-            <h3 className="card-title">informations de paiement</h3>
+            <h3 className="card-title">Informations de paiement</h3>
             <div className="cart-payement-group">
                 <div className="cart-payement-group-inputs">
                     <input className="input" type="text" placeholder="Titutaire de la carte" onChange={(e) => handleCardBank({ ...cardBank, owner: e.target.value })} />

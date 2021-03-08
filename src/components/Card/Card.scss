@@ -36,3 +36,16 @@
     font-weight: 700;
     margin-top: 10px;
 }
+
+
+@media screen and (max-width: 800px){
+    .card .third-title {
+        font-size: 1.5em;
+    }
+    .card-subtitle{
+        font-size: 1em;
+    }
+    .card-info{
+        font-size: 1.2em;
+    }
+}

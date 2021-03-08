@@ -27,7 +27,7 @@ $third-color: #1B2B40;
 
 .secondary-title {
     @extend %title;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     font-size: 50px;
     color: $primary-color;
     text-align: left;
@@ -57,3 +57,46 @@ $third-color: #1B2B40;
         outline: none;
     }
 }
+
+.primary-content{
+    font-size: 30px;
+}
+
+.secondary-content{
+    font-size: 16px;
+}
+
+
+
+
+@media screen and (max-width: 1100px){
+    .primary-title {
+        font-size: 75px;
+    }
+    .secondary-title{
+        font-size: 35px;
+        margin-bottom: 30px;
+    }
+    .primary-content {
+        font-size: 1.3rem;
+    }
+    .secondary-content{
+        font-size: 16px;
+    }
+}
+
+
+
+@media screen and (max-width: 800px){
+    .primary-title {
+        font-size: 50px;
+    }
+    .primary-content {
+        font-size: 1rem;
+    }
+    .secondary-content{
+        font-size: 14px;
+    }
+}
+
+

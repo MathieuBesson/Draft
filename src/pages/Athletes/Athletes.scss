@@ -1,12 +1,12 @@
 .athletes-page__body {
     padding: 100px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 5%;
 }
 
-.athletes-page__item:nth-of-type(1), 
+.athletes-page__item:nth-of-type(1),
 .athletes-page__item:nth-of-type(3n) {
     .btn-first {
         margin: 0;
@@ -21,21 +21,22 @@
     text-align: right;
 }
 
-.athletes-page__item-title{
+.athletes-page__item-title {
     color: white !important;
 }
 
 .approach__body {
-    margin-bottom: 150px;
+    margin-bottom: 150px !important;
     .secondary-title {
         text-align: center;
     }
 }
 
 .athletes-page__item {
-    flex: 0 1 28%;
+    flex: 1 1 400px;
+    max-width: 400px;
     margin-bottom: 90px;
-    height: 800px;
+    height: 700px;
 }
 
 .athletes-page {
@@ -51,4 +52,10 @@
     text-align: center;
     width: 70%;
     margin: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .approach__body-content {
+        width: 100%;
+    }
 }

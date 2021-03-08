@@ -53,3 +53,12 @@
     right: 13%;
     text-transform: uppercase;
 }
+
+@media screen and (max-width: 1500px) {
+    .cart-payement-bank-card{
+        display: none;
+    }
+    .cart-payement-group-inputs{
+        width: 100%;
+    }
+}

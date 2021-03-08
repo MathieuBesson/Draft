@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Login from 'components/Login';
 import SignUp from 'components/SignUp';
@@ -23,7 +23,7 @@ const Authentification = ({location, isConnected, cartLenght}) => {
                 pathname: '/',
             })
         }
-    }, [isConnected, history]);
+    }, [isConnected, history, location.state]);
 
     const activeClass = (type) => {
         return type === tabAuthentification ? 'active-link' : '';

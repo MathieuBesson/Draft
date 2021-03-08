@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState, useCallback } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FirebaseContext } from 'helpers/Firebase'
 import MainMenu from 'components/MainMenu'
 import Footer from 'components/Footer'
@@ -22,7 +22,7 @@ const Athletes = (props) => {
                 return { ...doc.data(), id: doc.id }
             })
         );
-    }, [firebase.products]);
+    }, [firebase]);
 
     function slugify(str) {
         str = str.replace(/^\s+|\s+$/g, '');
@@ -55,7 +55,7 @@ const Athletes = (props) => {
                 </Header>
                 <article className="athletes-page__body container">
                 {athletes.map(athlete => (
-                    <Card keyCard={athlete.id} type="athletes-page__item black-card card" style={{ backgroundImage: `url('${athlete.cutOutImage}')` }}>
+                    <Card key={athlete.id} keyCard={athlete.id} type="athletes-page__item black-card card" style={{ backgroundImage: `url('${athlete.cutOutImage}')` }}>
                         <h3 className="third-title athletes-page__item-title ">{`${athlete.firstName} ${athlete.lastName}`}</h3>
                         <p className="card-content">{athlete.shortDescription}</p>
                         <Link to={`/athletes/${slugify(`${athlete.firstName} ${athlete.lastName}`)}`}><Button type="btn-first">Voir en détail</Button></Link>

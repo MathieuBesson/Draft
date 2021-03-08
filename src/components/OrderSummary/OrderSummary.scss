@@ -1,6 +1,5 @@
 .order-summary{
     width: 25%;
-    height: 325px;
 }
 
 .order-summary-group{
@@ -14,11 +13,22 @@
 .order-summary-list{
     margin-top: 40px;
     display: flex;
+    justify-content: space-around;
     li{
         span{margin-top: 10px;}
         display: flex;
         flex-direction: column;
         text-align: center;
         font-size: 16px;
+        align-items: center;
+        img{
+            max-width: 80%;
+        }
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .order-summary{
+        width: 100%;
     }
 }

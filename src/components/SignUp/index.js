@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { FirebaseContext } from 'helpers/Firebase'
 import Button from 'components/Button';
 
@@ -22,11 +22,13 @@ const SignUp = (props) => {
             errorMsg: 'Votre prénom doit faire au minimum 3 caractères'
         },
         signUpEmail: {
+            // regex mail
             condition: (email) => (email.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/) ? true : false),
             errorMsg: 'Votre email n\'est pas valide'
         },
         signUpPassword: {
-            condition: (password) => (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!\.@#\\$%\\^&amp;\\*])(?=.{8,})/) ? true : false),
+            // regex password
+            condition: (password) => (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.@#\\$%\\^&amp;\\*])(?=.{8,})/) ? true : false),
             errorMsg: 'Votre mot de passe doit contenir au minimum: 1 caractère alphabétique minuscule, 1 caractère alphabétique majuscule, un chiffre, un caractère spécial et au moins 8 caractères au total'
         },
         signUpPasswordConfirm: {
@@ -126,7 +128,7 @@ const SignUp = (props) => {
             { checkField()
                 ? <Button action="submit" type="btn-first">Inscription</Button>
                 : <Button action="submit" type="btn-first disabled" disabled>Inscription</Button>}
-            <small id="emailHelp" className="form-text text-muted">Déjà inscrit ?  <span className="auth-form__link" onClick={() => props.tabChoice('login')}>Connectez-vous</span></small>
+            <small id="emailHelp" className="form-text text-muted">Déjà inscrit ?  <span className="auth-form__link" onClick={() => history.push('/login')}>Connectez-vous</span></small>
         </form>
     );
 }

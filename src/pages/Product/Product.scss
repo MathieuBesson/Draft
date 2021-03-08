@@ -1,6 +1,6 @@
-.product{
-    background-color: #F7F7F7;
-    .btn-first{
+.product {
+    background-color: #f7f7f7;
+    .btn-first {
         margin-top: 50px;
         text-align: center;
         font-size: 18px;
@@ -12,7 +12,7 @@
     display: flex;
     font-size: 20px;
     gap: 5%;
-    .card{
+    .card {
         flex: 1 1 20%;
     }
 }
@@ -20,7 +20,9 @@
 .product__group-miniature {
     display: flex;
     flex-direction: column;
-    flex: 1 1 20%;
+    flex: 1 1 10%;
+    align-items: center;
+    gap: 25px;
 }
 
 .product__miniature {
@@ -28,7 +30,7 @@
     flex: 1 1 20%;
     width: 160px;
     height: 185px;
-    margin-bottom: 25px;
+    // margin-bottom: 25px;
     border-radius: 15px;
     background-repeat: no-repeat;
     background-position: center;
@@ -39,96 +41,164 @@
     overflow: hidden;
     flex: 1 1 40%;
     height: 500px;
-
 }
 
-.product__current-img {
-    margin-left: 45px;
+.product__current {
+    flex: 1 1 50%;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    &.rotate {
+        // width: 250px;
+        height: 600px;
+        transform: rotate(-90deg);
+        width: 300px;
+
+        // translateY(-160px) translateX(25px);
+    }
+}
+.product__current-img {
+    margin-left: 45px;
     width: 600px;
     height: 500px;
-    &.rotate {
-        width: 250px;
-        height: 600px;
-        transform: rotate(-90deg) translateY(-160px) translateX(25px);
-    }
 }
 
 .product__images {
     display: flex;
 }
 
-
-.product__radio{
-    label{
+.product__radio {
+    label {
         margin-right: 30px;
         margin-left: 7px;
         font-size: 18px;
     }
 }
 
-.product__quantity{
+.radio-group{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product__quantity {
     margin-top: 35px;
     font-weight: 600;
     text-align: center;
 }
 
-
-
-.product__card-bottom{
+.product__card-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.product__quantity-change{
+.product__quantity-change {
     cursor: pointer;
 }
-.product__price{
+.product__price {
     margin-top: 25px;
     font-weight: 700;
     font-size: 25px;
     text-transform: uppercase;
 }
 
-.product__advantage{
+.product__advantage {
     margin-top: 110px;
     padding-bottom: 100px;
 }
 
-.product__advantage-item{
+.product__advantage-item {
+    flex: 1 1 35%;
     display: flex;
+    gap: 5%;
 }
 
-.product__advantage-infos{
-    margin-left: 90px;
-    width: 375px;
+.product__advantage-infos {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.product__advantage-list{
+.product__advantage-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 100px;
+    gap: 5%;
 }
 
-
-.product__content{
+.product__content {
     margin-bottom: 40px;
 }
-.product__details-group{
+.product__details-group {
     margin-top: 110px;
     padding-bottom: 90px;
 }
 
-
-.product__details-group{
+.product__details-group {
     display: flex;
     justify-content: space-between;
-    li{list-style-type: disc}
+    li {
+        list-style-type: disc;
+    }
     margin: 0 2%;
+}
+
+@media screen and (max-width: 1800px) {
+    .product__main {
+        flex-direction: column;
+        .card{
+            margin: 100px auto 0 auto;
+            width: 70%;
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .product__images {
+        flex-direction: column;
+    }
+    .product__group-miniature {
+        flex-direction: row;
+        margin-bottom: 45px;
+    }
+    .product__current {
+        min-height: 500px;
+        &.rotate {
+            width: 300px;
+            margin: auto;
+            transform: rotate(25deg);
+        }
+    }
+    .product__details-group{
+        flex-direction: column;
+    }
+    .product__advantage-list{
+        flex-direction: column;
+    }
+    .product__advantage-item{
+        flex-direction: column;
+        gap: 0;
+        margin: 15px 0;
+        flex: 1 1 100%;
+        text-align: center;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .product__current {
+        min-height: 250px;
+        width: 100%;
+        background-size: cover;
+        &.rotate {
+        background-size: contain;
+        width: 100%;
+            margin: auto;
+            transform: rotate(0);
+        }
+    }
+    .product__main {
+        .card{
+            width: 100%;
+        }
+    }
+
 }

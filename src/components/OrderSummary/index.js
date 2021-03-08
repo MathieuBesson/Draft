@@ -37,15 +37,15 @@ const OrderSummary = ({total, deliveryPlaceStation, deliveryPlaceHome}) => {
             </Card>
             <ul className="order-summary-list">
                 <li>
-                    <img src={`${process.env.PUBLIC_URL}/paiement1.svg`} />
+                    <img src={`${process.env.PUBLIC_URL}/paiement1.svg`} alt="Paiement Sécurisé"/>
                     <span>Paiement Sécurisé</span>
                 </li>
                 <li>
-                    <img src={`${process.env.PUBLIC_URL}/paiement2.svg`} />
+                    <img src={`${process.env.PUBLIC_URL}/paiement2.svg`} alt="Retour sous 30 jours"/>
                     <span>Retour sous 30 jours</span>
                 </li>
                 <li>
-                    <img src={`${process.env.PUBLIC_URL}/paiement3.svg`} />
+                    <img src={`${process.env.PUBLIC_URL}/paiement3.svg`} alt="Livraison Gratuite"/>
                     <span>Livraison Gratuite</span>
                 </li>
             </ul>

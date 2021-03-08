@@ -15,6 +15,7 @@
     display: flex;
     gap: 10%;
     min-height: 570px;
+    // flex-wrap: wrap;
     &:not(:first-child){
         padding-bottom: 120px;
     }
@@ -29,10 +30,44 @@
 
 .athlete__video, .athlete__biographie{
     flex: 1 0 60%;
+    min-height: 300px;
 }
+
+// .athlete__video{
+//     min-width: 30%;
+//     min-height: 700px;
+// }
 
 
 
 .athlete__block-content{
     margin-top: 30px;
+}
+
+
+@media screen and (max-width: 1100px){
+    .athlete__block{
+        flex-direction: column;
+        &:not(:last-child){
+            margin-top: 0;
+        }
+    }
+    .athlete__personal-infos, .athlete__palmares{
+        text-align: center;
+        width: 80%;
+        margin: 75px auto;
+    }
+}
+
+
+
+@media screen and (max-width: 800px){
+    .athlete__personal-infos, .athlete__palmares{
+        width: 100%;
+        margin: 75px auto;
+    }
+    .athlete__block-content{
+        text-align: justify;
+        text-justify: inter-word;
+    }
 }
