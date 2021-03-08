@@ -17,7 +17,7 @@ Ce projet à été réalisé durant une semaine d'examen par groupe de 4 (Web de
 Cette semaine a été pour nous l'occasion de créer un projet de A à Z, du design des planches, à la création du site e-commerce en passant par la stratégie de communication.
 
 
-### Fonctionnalités 
+## Fonctionnalités 
 
 - Home page un scroll = un section
 - Authentification : Inscription / Connexion
@@ -30,7 +30,7 @@ Cette semaine a été pour nous l'occasion de créer un projet de A à Z, du des
     - Visualisation des commandes 
 
 
-### Built With
+## Built With
 
 * [ReactJS](https://fr.reactjs.org/)
 * [Firebase](https://firebase.google.com/)
