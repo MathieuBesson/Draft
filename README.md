@@ -38,7 +38,7 @@ Cette semaine a été pour nous l'occasion de créer un projet de A à Z, du des
 <!-- CONTACT -->
 ## Contact
 
-Portfolio : 
+Portfolios : 
 
 * [Dorian Cosson](https://dorian-cosson.fr/)
 * [Théo Belliard](https://theobelliard.fr/)
